@@ -1,5 +1,5 @@
 public class EventService {
-  public EventResult event (EventRequest r) {
+  public EventResult event (AuthToken r) {
     return null;
   }
 }

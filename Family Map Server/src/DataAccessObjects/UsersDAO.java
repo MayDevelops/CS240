@@ -27,7 +27,7 @@ public class UsersDAO {
   /**
    * Clears the entire User table.
    *
-   * @return true or false depending on if the User table is correctly cleared.
+   * @return true or false depending on if the table is cleared correctly.
    */
   public Boolean Clear(User user) { return null; }
 

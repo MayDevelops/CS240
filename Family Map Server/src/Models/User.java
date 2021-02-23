@@ -1,3 +1,6 @@
+import java.util.Set;
+import java.util.TreeSet;
+
 /**
  * The user class is a model class that represents a user account using the username, password, email,
  * first name, last name, gender and unique person id.
@@ -12,6 +15,7 @@ public class User {
   private String lastName;
   private String gender;
   private String personID;
+  private Set <AuthToken> authTokens;
 
   /**
    * This is the default constructor that will initialize all the local variables to null.
@@ -24,6 +28,7 @@ public class User {
     lastName = null;
     gender = null;
     personID = null;
+    authTokens = new TreeSet<>();
   }
 
   /**
@@ -35,8 +40,9 @@ public class User {
    * @param setLastName the user's last name.
    * @param setGender the user's gender.
    * @param setPersonID Unique Person ID assigned to this user’s generated Person object.
+   * @param setAuthToken Unique authorization token given to the user upon a successful registration.
    */
-  public User(String setUsername, String setPassword, String setEmail, String setFirstName, String setLastName, String setGender, String setPersonID) {
+  public User(String setUsername, String setPassword, String setEmail, String setFirstName, String setLastName, String setGender, String setPersonID, AuthToken setAuthToken) {
     this.username = setUsername;
     this.password = setPassword;
     this.email = setEmail;
@@ -44,6 +50,7 @@ public class User {
     this.lastName = setLastName;
     this.gender = setGender;
     this.personID = setPersonID;
+    this.authTokens.add(setAuthToken);
   }
 
   public String getUsername() { return username; }
@@ -53,6 +60,7 @@ public class User {
   public String getLastName() { return lastName; }
   public String getGender() { return gender; }
   public String getPersonID() { return personID; }
+  public Set <AuthToken> getAuthTokens() { return authTokens; }
 
   public void setUsername(String setUsername) { this.username = setUsername; }
   public void setPassword(String setPassword) { this.password = setPassword; }
@@ -61,6 +69,7 @@ public class User {
   public void setLastName(String setLastName) { this.lastName = setLastName; }
   public void setGender(String setGender) { this.gender = setGender; }
   public void setPersonID(String setPersonID) { this.personID = setPersonID; }
+  public void setAuthTokens(String setAuthToken) { this.authTokens.add(new AuthToken(username, setAuthToken)); }
 
 
 }

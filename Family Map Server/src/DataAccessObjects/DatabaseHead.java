@@ -1,32 +1,27 @@
 /**
- * A class used for accessing the entire database at once. This will be used to clear the entire databse, and or fill
+ * A class used for accessing the entire database at once. This will be used to clear the entire database, and or fill
  * the entire database upon launch of the server or logging in with a new user.
  */
 public class DatabaseHead {
 
-
   /**
-   * This will clear a table in the database
+   * This will clear all of the tables in the database.
    */
   public void ClearTables() {
 
   }
 
   /**
-   * This will delete a table in the database
+   * This will delete all of the tables in the database.
    */
   public void DeleteTables() {
 
   }
 
   /**
-   * This will create all of the database tables.
+   * This will create all of the tables for the database.
    */
   public void CreateTables() {
 
   }
-
-
-
-
 }

@@ -16,13 +16,13 @@ public class PersonsDAO {
   /**
    * Deletes a person from the Person table in the database.
    * @param person the person to be deleted.
-   * @return true or false depending on if the User object is correctly inserted into the table.
+   * @return true or false depending on if the User object is correctly removed from the table.
    */
   public Boolean Delete(Person person) { return null; }
 
   /**
    * Clears the Person table in the database.
-   * @return true or false depending on if the User object is correctly inserted into the table.
+   * @return true or false depending on if the table is cleared correctly.
    */
   public Boolean Clear() { return null; }
 
