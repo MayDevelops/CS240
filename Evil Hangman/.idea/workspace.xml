@@ -4,7 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cae0110-56ca-4ad6-a95d-5cf07d16e8ef" name="Default Changelist" comment="Everything passes all tests and game plays completely till the end!" />
+    <list default="true" id="2cae0110-56ca-4ad6-a95d-5cf07d16e8ef" name="Default Changelist" comment="Everything passes all tests and game plays completely till the end!">
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/.idea/Family Map Server.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/SQL/FamilyMapServer.sqlite" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/SQL/FamilyMapServer.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/UnitTests/DatabaseHeadTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/UnitTests/EventsDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/UnitTests/PersonsDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/UnitTests/UsersDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/DataAccessException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/src/Server/Handler/ClearHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/src/Server/Handler/DefaultHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/src/Server/Handler/RegisterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Family Map Server/src/Server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/FMS_Passoff.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/FMS_Passoff.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/AuthTokenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/AuthTokenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/DatabaseHead.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/DatabaseHead.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/EventsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/EventsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/PersonsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/PersonsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/UsersDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/DataAccessObjects/UsersDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Models/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Models/AuthToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Models/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Models/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Models/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/ClearResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/ClearResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/EventResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/EventResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/FillResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/FillResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/LoadResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/LoadResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/LoginResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/PersonResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/PersonResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Results/RegisterResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/ClearService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/ClearService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/EventService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/FillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/FillService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/LoadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/LoadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Family Map Server/src/Service/Services/RegisterService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
