@@ -41,7 +41,7 @@ public class EventsDAOTest {
     //Here we close the connection to the database file so it can be opened elsewhere.
     //We will leave commit to false because we have no need to save the changes to the database
     //between test cases
-    db.closeConnection(false);
+      db.closeConnection(false);
   }
 
   @Test

@@ -7,6 +7,7 @@ package Service.Results;
 public class Result {
 
   public String invalidAuthToken;
+  public String invalidDatabaseClear;
   public String invalidEventID;
   public String invalidPassword;
   public String invalidPersonID;
@@ -24,6 +25,7 @@ public class Result {
    */
   public Result() {
     invalidAuthToken = "Error: The authorization token provided is invalid.\n";
+    invalidDatabaseClear = "Error: The database was not cleared successfully.\n";
     invalidEventID = "Error: Invalid eventID parameter, Requested event does not belong to this user.\n";
     invalidPersonID = "Error: The personID is invalid, requested person does not belong to this user or does not exist.\n";
     invalidPassword = "Error: The password is incorrect.\n";

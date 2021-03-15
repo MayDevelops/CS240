@@ -31,7 +31,7 @@ class UsersDAOTest {
     Connection conn = db.getConnection();
     //Let's clear the database as well so any lingering data doesn't affect our tests
     db.ClearTables();
-    //Then we pass that connection to the EventDAO so it can access the database
+    //Then we pass that connection to the UserDAO so it can access the database
     uDao = new UsersDAO(conn);
   }
 
@@ -40,7 +40,7 @@ class UsersDAOTest {
     //Here we close the connection to the database file so it can be opened elsewhere.
     //We will leave commit to false because we have no need to save the changes to the database
     //between test cases
-    db.closeConnection(false);
+      db.closeConnection(false);
   }
   @Test
   void insertPass() throws DataAccessException {

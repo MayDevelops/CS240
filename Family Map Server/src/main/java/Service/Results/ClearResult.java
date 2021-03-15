@@ -4,11 +4,11 @@ package Service.Results;
  */
 public class ClearResult extends  Result{
 
-  public ClearResult(Boolean success) {
-    if(success) {
-      //success message
-    } else {
-      //error message
-    }
-  }
+  private String result;
+
+  public ClearResult(String setResult) { this.result = setResult; }
+
+  public String getResult() { return result; }
+  public void setResult(String result) { this.result = result; }
+
 }
