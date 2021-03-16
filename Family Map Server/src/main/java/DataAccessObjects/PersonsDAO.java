@@ -14,6 +14,7 @@ public class PersonsDAO {
   private final Connection conn;
 
   public PersonsDAO(Connection conn) {this.conn = conn; }
+  public PersonsDAO() { this.conn = null; }
   /**
    * Inserts the person into the Person table in the database.
    * @param person the person to be inserted into the database.

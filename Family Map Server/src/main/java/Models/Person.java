@@ -1,4 +1,7 @@
 package Models;
+
+import java.util.UUID;
+
 /**
  * The person class that represents a person in the data base. This class contains information like the
  * username of the person this person is associated with, the first name, last name, gender, and family ID tags
@@ -19,7 +22,7 @@ public class Person {
    * The default constructor that initializes all of the local variables to null.
    */
   public Person() {
-    personID = null;
+    personID = UUID.randomUUID().toString();
     associatedUsername = null;
     firstName = null;
     lastName = null;

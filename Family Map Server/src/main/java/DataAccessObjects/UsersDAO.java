@@ -15,6 +15,7 @@ public class UsersDAO {
   private final Connection conn;
 
   public UsersDAO(Connection conn) {this.conn = conn; }
+  public UsersDAO() { this.conn = null; }
 
   /**
    * An insert method that will insert a User object into the User table.
@@ -35,7 +36,7 @@ public class UsersDAO {
 
       stmt.executeUpdate();
     } catch (SQLException e) {
-      throw new DataAccessException("Error encountered while inserting into the database");
+      throw new DataAccessException("Error encountered while inserting user into the database");
     }
   }
 
@@ -51,7 +52,7 @@ public class UsersDAO {
     stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
-      throw new DataAccessException("Error encountered while inserting into the database");
+      throw new DataAccessException("Error encountered while deleting into the database");
     }
   }
 

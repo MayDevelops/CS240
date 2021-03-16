@@ -18,6 +18,7 @@ public class EventsDAO {
   {
     this.conn = conn;
   }
+  public EventsDAO() { this.conn = null; }
 
 
   /**

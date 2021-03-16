@@ -19,16 +19,19 @@ public class ClearService {
     DatabaseHead head = new DatabaseHead();
     try {
       System.out.println("Attempting to clear the database.\n");
+
       head.getConnection();
       head.ClearTables();
       head.closeConnection(true);
+
       System.out.println("Clear was successful!\n");
+
       clearResult = new ClearResult("Clear succeeded.");
       return clearResult;
     } catch (DataAccessException e) {
       System.out.println("Clear did not succeed.\n");
       head.closeConnection(false);
-      clearResult = new ClearResult(clearResult.invalidDatabaseClear);
+      clearResult = new ClearResult(clearResult.getInvalidDatabaseClear());
       return clearResult;
     }
   }

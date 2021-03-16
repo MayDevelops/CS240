@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.UUID;
+
 /**
  * The event class represents important events from the persons life. These events contain information like the
  * unique event identification tag, the username that the event is associated with,  the country and city where it took place,
@@ -16,6 +18,19 @@ public class Event {
   private float latitude;
   private float longitude;
   private int year;
+
+
+  public Event() {
+    eventID = UUID.randomUUID().toString();
+    associatedUsername = null;
+    personID = null;
+    country = null;
+    city = null;
+    eventType = null;
+    latitude = 0.0f;
+    longitude = 0.0f;
+    year = 0;
+  }
 
   /**
    * The event pojo that represents an event that takes place in a persons life.
@@ -41,6 +56,15 @@ public class Event {
     this.setLongitude(setLongitude);
     this.setYear(setYear);
   }
+
+  public Event(String setCity, String setCountry, float setLatitude, float setLongitude) {
+    this.eventID = UUID.randomUUID().toString();
+    this.setCity(setCity);
+    this.setCountry(setCountry);
+    this.setLatitude(setLatitude);
+    this.setLongitude(setLongitude);
+  }
+
 
   public String getEventID() { return eventID; }
   public String getAssociatedUsername() { return associatedUsername; }

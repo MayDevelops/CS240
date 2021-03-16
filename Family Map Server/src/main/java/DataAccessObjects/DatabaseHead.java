@@ -138,8 +138,8 @@ public class DatabaseHead {
               "\t`First_Name`\ttext NOT NULL,\n" +
               "\t`Last_Name`\ttext NOT NULL,\n" +
               "\t`Gender`\ttext NOT NULL,\n" +
-              "\t`Father_ID`\ttext NOT NULL,\n" +
-              "\t`Mother_ID`\ttext NOT NULL,\n" +
+              "\t`Father_ID`\ttext ,\n" +
+              "\t`Mother_ID`\ttext ,\n" +
               "\t`Spouse_ID`\ttext,\n" +
               "\tPRIMARY KEY(`Person_ID`)\n" +
               ");\n";
