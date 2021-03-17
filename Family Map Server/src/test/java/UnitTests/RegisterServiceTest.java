@@ -6,11 +6,12 @@ import Service.Requests.RegisterRequest;
 import Service.Results.RegisterResult;
 import Service.Services.ClearService;
 import Service.Services.RegisterService;
-import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.sql.Connection;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RegisterServiceTest {
   DatabaseHead db = new DatabaseHead();
@@ -28,22 +29,22 @@ public class RegisterServiceTest {
   }
 
   @Test
-  public void registerNewUser() throws DataAccessException {
+  public void RegisterPass() throws DataAccessException {
     RegisterService registerService = new RegisterService();
     RegisterRequest registerRequest = new RegisterRequest("username", "password", "email", "firstname",
             "lastname", "M");
 
     RegisterResult registerResult = registerService.Register(registerRequest);
 
-    Assert.assertNotNull(registerResult.getPersonID());
-    Assert.assertNotNull(registerResult.getAuthToken());
-    Assert.assertNotNull(registerResult.getUsername());
-    Assert.assertNull(registerResult.getErrorMessage());
+    assertNotNull(registerResult.getPersonID());
+    assertNotNull(registerResult.getAuthToken());
+    assertNotNull(registerResult.getUsername());
+    assertNull(registerResult.getMessage());
     clearService.ClearDatabase();
   }
 
   @Test
-  public void registerNewUserInvalidInput() throws DataAccessException {
+  public void RegisterFail() throws DataAccessException {
     RegisterService registerService = new RegisterService();
     RegisterRequest registerRequest = new RegisterRequest("A", "B", "C", "D",
             "E", "F");
@@ -51,15 +52,15 @@ public class RegisterServiceTest {
 
     RegisterResult registerResult = registerService.Register(registerRequest);
 
-    Assert.assertNotNull(registerResult.getErrorMessage());
-    Assert.assertEquals(registerResult.getErrorMessage(), "Error: Invalid input.\n");
-    Assert.assertNull(registerResult.getAuthToken());
-    Assert.assertNull(registerResult.getUsername());
-    Assert.assertNull(registerResult.getPersonID());
+    assertNotNull(registerResult.getMessage());
+    assertEquals("Error: Invalid input.", registerResult.getMessage());
+    assertNull(registerResult.getAuthToken());
+    assertNull(registerResult.getUsername());
+    assertNull(registerResult.getPersonID());
   }
 
   @Test
-  public void registerNewUserAlreadyExists() throws DataAccessException {
+  public void ExistingUser() throws DataAccessException {
 
     RegisterService registerService = new RegisterService();
     RegisterRequest registerRequest = new RegisterRequest("A", "B", "C", "D",
@@ -68,11 +69,11 @@ public class RegisterServiceTest {
 
     registerResult = registerService.Register(registerRequest);
 
-    Assert.assertNotNull(registerResult.getErrorMessage());
-    Assert.assertEquals(registerResult.getErrorMessage(), "Error: Username is already taken by another user.\n");
-    Assert.assertNull(registerResult.getAuthToken());
-    Assert.assertNull(registerResult.getUsername());
-    Assert.assertNull(registerResult.getPersonID());
+    assertNotNull(registerResult.getMessage());
+    assertEquals("Error: Username is already taken by another user.", registerResult.getMessage());
+    assertNull(registerResult.getAuthToken());
+    assertNull(registerResult.getUsername());
+    assertNull(registerResult.getPersonID());
 
     clearService.ClearDatabase();
   }

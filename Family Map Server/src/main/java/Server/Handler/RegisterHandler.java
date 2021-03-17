@@ -24,7 +24,6 @@ public class RegisterHandler implements HttpHandler {
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
-
     boolean success = false;
     try {
       System.out.println("Attempting to register in Handler.\n");

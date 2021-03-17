@@ -7,10 +7,10 @@ public class RegisterResult {
   private String authToken;
   private String username;
   private String personID;
-  private String errorMessage;
+  private String message;
 
   public RegisterResult() {}
-  public RegisterResult(String setError) { this.setErrorMessage(setError); }
+  public RegisterResult(String setError) { this.setMessage(setError); }
 
   /**
    * The constructor for the register result that will either create a success or failure message.
@@ -23,17 +23,17 @@ public class RegisterResult {
       this.setAuthToken(setAuthToken);
       this.setUsername(setUsername);
       this.setPersonID(setPersonID);
-      this.errorMessage = null;
+      this.message = null;
   }
 
   public String getAuthToken() { return authToken; }
   public String getUsername() { return username; }
   public String getPersonID() { return personID; }
-  public String getErrorMessage() { return errorMessage; }
+  public String getMessage() { return message; }
 
   public void setAuthToken(String authToken) { this.authToken = authToken; }
   public void setUsername(String username) { this.username = username; }
   public void setPersonID(String personID) { this.personID = personID; }
-  public void setErrorMessage(String errorMessage) { this.errorMessage = errorMessage; }
+  public void setMessage(String message) { this.message = message; }
 
 }

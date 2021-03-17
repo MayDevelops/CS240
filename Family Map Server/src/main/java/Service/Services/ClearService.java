@@ -18,7 +18,7 @@ public class ClearService {
   public ClearResult ClearDatabase() throws DataAccessException {
     DatabaseHead head = new DatabaseHead();
     try {
-      System.out.println("Attempting to clear the database.\n");
+      System.out.println("Attempting to clear the database.");
 
       head.getConnection();
       head.ClearTables();
@@ -29,7 +29,7 @@ public class ClearService {
       clearResult = new ClearResult("Clear succeeded.");
       return clearResult;
     } catch (DataAccessException e) {
-      System.out.println("Clear did not succeed.\n");
+      System.out.println("Clear did not succeed.");
       head.closeConnection(false);
       clearResult = new ClearResult(clearResult.getInvalidDatabaseClear());
       return clearResult;

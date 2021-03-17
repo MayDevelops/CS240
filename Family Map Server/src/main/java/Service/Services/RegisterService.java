@@ -18,8 +18,6 @@ import java.util.ArrayList;
  */
 public class RegisterService {
 
-  private RegisterResult errorAccess = new RegisterResult();
-
   private AuthTokenDAO authTokenDAO;
   private EventsDAO eventsDAO;
   private PersonsDAO personsDAO;
@@ -48,7 +46,7 @@ public class RegisterService {
     personsDAO = new PersonsDAO(conn);
     usersDAO = new UsersDAO(conn);
     if (! ValidInput(r)) {
-      return new RegisterResult("Error: Invalid input.\n");
+      return new RegisterResult("Error: Invalid input.");
     }
 
     CreatePerson(r);
@@ -69,7 +67,7 @@ public class RegisterService {
                 person.getPersonID());
       } else {
         db.closeConnection(false);
-        return new RegisterResult("Error: Username is already taken by another user.\n");
+        return new RegisterResult("Error: Username is already taken by another user.");
       }
     } catch (DataAccessException e) {
       e.printStackTrace();

@@ -2,25 +2,18 @@ package Service.Results;
 /**
  * A class that returns a response based on the success of the operation provided by the service.
  */
-public class LoadResult extends  Result {
-
-  private Integer numUsers;
-  private Integer numPersons;
-  private Integer numEvents;
-
+public class LoadResult {
+  private String message;
 
   /**
    * Generates the response body for the service.
-   * @param success determines if the result is success or failure.
+   * @param s determines if the result is success or failure.
    */
-  public LoadResult(Boolean success) {
-    if(success) {
-      //success message
-    } else {
-      //error message
-    }
+  public LoadResult(String s) {
+   this.message = s;
   }
 
+  public String getMessage() { return message; }
 
-
+  public void setMessage(String message) { this.message = message; }
 }

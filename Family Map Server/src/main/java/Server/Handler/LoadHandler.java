@@ -1,34 +1,35 @@
 package Server.Handler;
 
 import DataAccessObjects.DataAccessException;
-import Service.Results.ClearResult;
-import Service.Services.ClearService;
+import Service.Requests.LoadRequest;
+import Service.Results.LoadResult;
+import Service.Services.LoadService;
+import com.google.gson.Gson;
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.util.Scanner;
 
-public class ClearHandler implements HttpHandler {
+public class LoadHandler implements HttpHandler {
+
+  LoadService service = new LoadService();
+  Gson gson = new Gson();
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
     boolean success = false;
-
     try {
-      System.out.println("Clear Handler has been called.\n");
       if (exchange.getRequestMethod().equalsIgnoreCase("post")) {
-        System.out.println("Calling clearService...\n");
-        ClearService clearService = new ClearService();
-        System.out.println("clearService is finished, creating result...\n");
-        ClearResult clearResult = clearService.ClearDatabase();
-
-        String response = "{ \"message\": \"" + clearResult.getMessage() + "\"}";
-        System.out.println("Response created: \"" + response + "\" \n");
-
-
+        String requestBody = StringConversion(exchange.getRequestBody());
+        LoadRequest loadRequest = gson.fromJson(requestBody, LoadRequest.class);
+        LoadResult loadResult = service.Load(loadRequest);
+        String response = gson.toJson(loadResult);
         exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
         OutputStream responseBody = exchange.getResponseBody();
         ToString(response, responseBody);
@@ -40,10 +41,11 @@ public class ClearHandler implements HttpHandler {
         exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
         exchange.getResponseBody().close();
       }
-    } catch (IOException | DataAccessException e) {
+    }
+    catch (DataAccessException | IOException inputException) {
       exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
       exchange.getResponseBody().close();
-      e.printStackTrace();
+      inputException.printStackTrace();
     }
   }
 
@@ -53,4 +55,8 @@ public class ClearHandler implements HttpHandler {
     s.flush();
   }
 
+  public String StringConversion(InputStream is) {
+    Scanner scanner = new java.util.Scanner(is).useDelimiter("\\A");
+    return scanner.hasNext() ? scanner.next() : "";
+  }
 }

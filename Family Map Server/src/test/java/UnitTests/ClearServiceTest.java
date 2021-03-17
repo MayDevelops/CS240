@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 public class ClearServiceTest {
 
   @Test
-  public void clearDbTest() throws DataAccessException {
+  public void ClearPass() throws DataAccessException {
     ClearService clearService = new ClearService();
     ClearResult clearResult = clearService.ClearDatabase();
 
-    Assert.assertTrue(clearResult.getResult().equals("Clear succeeded."));
+    Assert.assertTrue(clearResult.getMessage().equals("Clear succeeded."));
   }
 }
