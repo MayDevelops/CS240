@@ -27,7 +27,7 @@ public class RegisterHandler implements HttpHandler {
     boolean success = false;
     try {
       System.out.println("Attempting to register in Handler.\n");
-      if(exchange.getRequestMethod().equalsIgnoreCase("post")) {
+      if (exchange.getRequestMethod().equalsIgnoreCase("post")) {
         String requestBody = StringConversion(exchange.getRequestBody());
         RegisterRequest registerRequest = gson.fromJson(requestBody, RegisterRequest.class);
         RegisterResult registerResult = service.Register(registerRequest);
@@ -39,7 +39,7 @@ public class RegisterHandler implements HttpHandler {
         responseBody.close();
         success = true;
 
-        if (!success) {
+        if (! success) {
           exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
           exchange.getResponseBody().close();
         }
@@ -48,7 +48,7 @@ public class RegisterHandler implements HttpHandler {
 
     } catch (IOException | DataAccessException e) {
       e.printStackTrace();
-      exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR,0);
+      exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
       exchange.getResponseBody().close();
     }
 

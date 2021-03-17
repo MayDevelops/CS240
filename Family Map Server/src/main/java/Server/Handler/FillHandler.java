@@ -1,50 +1,56 @@
 package Server.Handler;
 
 import DataAccessObjects.DataAccessException;
-import Service.Requests.LoadRequest;
-import Service.Results.LoadResult;
-import Service.Services.LoadService;
+import Service.Results.FillResult;
+import Service.Services.FillService;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.util.Scanner;
 
-public class LoadHandler implements HttpHandler {
+public class FillHandler implements HttpHandler {
 
-  LoadService service = new LoadService();
+  FillService fillService = new FillService();
   Gson gson = new Gson();
+  boolean success = false;
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
-    boolean success = false;
+    FillResult fillResult;
+    String response = "Error: Invalid request.";
     try {
       if (exchange.getRequestMethod().equalsIgnoreCase("post")) {
-        String requestBody = StringConversion(exchange.getRequestBody());
-        LoadRequest loadRequest = gson.fromJson(requestBody, LoadRequest.class);
-        LoadResult loadResult = service.Load(loadRequest);
-        String response = gson.toJson(loadResult);
+
+        String uri = exchange.getRequestURI().toString();
+        uri = uri.substring(6);
+
+        if (uri.contains("/")) {
+          int i = uri.indexOf("/");
+          fillResult = fillService.Fill(uri.substring(0, i), Integer.parseInt(uri.substring(i + 1)));
+          response = gson.toJson(fillResult);
+        } else {
+          fillResult = fillService.Fill(uri, 4);
+          response = gson.toJson(fillResult);
+        }
         exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
         OutputStream responseBody = exchange.getResponseBody();
         ToString(response, responseBody);
         responseBody.close();
         success = true;
       }
-
-      if (!success) {
+      if (! success) {
         exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
         exchange.getResponseBody().close();
       }
-    }
-    catch (DataAccessException | IOException inputException) {
+    } catch (IOException | DataAccessException e) {
+      e.printStackTrace();
       exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
       exchange.getResponseBody().close();
-      inputException.printStackTrace();
+
     }
   }
 
@@ -54,8 +60,4 @@ public class LoadHandler implements HttpHandler {
     s.flush();
   }
 
-  public String StringConversion(InputStream is) {
-    Scanner scanner = new java.util.Scanner(is).useDelimiter("\\A");
-    return scanner.hasNext() ? scanner.next() : "";
-  }
 }

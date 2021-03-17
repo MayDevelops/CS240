@@ -6,7 +6,7 @@ public class ClearResult extends  Result{
 
   private String message;
 
-  public ClearResult(String setResult) { this.message = setResult; }
+  public ClearResult(String setMessage) { this.message = setMessage; }
 
   public String getMessage() { return message; }
   public void setMessage(String message) { this.message = message; }

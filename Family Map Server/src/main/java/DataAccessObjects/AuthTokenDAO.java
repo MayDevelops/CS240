@@ -47,7 +47,7 @@ public class AuthTokenDAO {
   public AuthToken find(String searchToken) throws DataAccessException {
     AuthToken token;
     ResultSet rs = null;
-    String sql = "SELECT * FROM AuthToken WHERE Username = ?;";
+    String sql = "SELECT * FROM AuthToken WHERE Auth_Token = ?;";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
       stmt.setString(1, searchToken);
       rs = stmt.executeQuery();

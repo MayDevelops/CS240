@@ -40,11 +40,11 @@ public class RegisterService {
   public RegisterResult Register(RegisterRequest r) throws DataAccessException {
     DatabaseHead db = new DatabaseHead();
     Connection conn = db.getConnection();
-
     authTokenDAO = new AuthTokenDAO(conn);
     eventsDAO = new EventsDAO(conn);
     personsDAO = new PersonsDAO(conn);
     usersDAO = new UsersDAO(conn);
+
     if (! ValidInput(r)) {
       return new RegisterResult("Error: Invalid input.");
     }
@@ -104,13 +104,10 @@ public class RegisterService {
   }
 
   private void Insert(ArrayList<Person> persons, ArrayList<Event> events) throws DataAccessException {
-    for (int i = 0; i < persons.size(); i++) {
-      personsDAO.Insert(persons.get(i));
-    }
-
-    for (int i = 0; i < events.size(); i++) {
-      eventsDAO.Insert(events.get(i));
-    }
+    if (persons.size() == 0) { throw new DataAccessException("Error: Persons array is empty."); }
+    if (events.size() == 0) { throw new DataAccessException("Error: Events array is empty."); }
+    for (Person temp : persons) { personsDAO.Insert(temp); }
+    for (Event temp : events) { eventsDAO.Insert(temp); }
   }
 
 }

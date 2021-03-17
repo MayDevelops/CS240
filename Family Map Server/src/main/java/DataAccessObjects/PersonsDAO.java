@@ -1,10 +1,7 @@
 package DataAccessObjects;
 import Models.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 /**
@@ -38,12 +35,20 @@ public class PersonsDAO {
     }
   }
 
-  /**
-   * Deletes a person from the Person table in the database.
-   * @param person the person to be deleted.
-   * @return true or false depending on if the User object is correctly removed from the table.
-   */
-  public Boolean Delete(Person person) { return null; }
+
+  public Boolean Delete(String username) {
+    String sql = "DELETE FROM Persons WHERE Username = ?;";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+      stmt.setString(1,username);
+      stmt.executeUpdate();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Clears the Person table in the database.
@@ -91,6 +96,40 @@ public class PersonsDAO {
 
     }
     return null;
+  }
+
+  public ArrayList<Person> FindAll(String username) throws DataAccessException {
+    ArrayList<Person> persons = new ArrayList<Person>();
+    ResultSet rs = null;
+    String sql = "SELECT * FROM Persons WHERE Username = ?;";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+      stmt.setString(1, username);
+      rs = stmt.executeQuery();
+      while (rs.next()) {
+        Person p = new Person(rs.getString("Person_ID"), rs.getString("Username"),
+                rs.getString("First_Name"), rs.getString("Last_Name"), rs.getString("Gender"),
+                rs.getString("Father_ID"), rs.getString("Mother_ID"), rs.getString("Spouse_ID"));
+
+        persons.add(p);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw new DataAccessException("Error encountered while finding all persons associated with " + username + ".");
+    } finally {
+      if(rs != null) {
+        try {
+          rs.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+
+    if(persons.size() == 0) {
+      return null;
+    } else {
+      return persons;
+    }
   }
 
 

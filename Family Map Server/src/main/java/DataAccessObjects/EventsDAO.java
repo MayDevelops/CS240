@@ -51,12 +51,19 @@ public class EventsDAO {
     }
   }
 
-  /**
-   * Deletes an event from the Event table in the database.
-   * @param event the event to be deleted.
-   * @return true or false depending on if the User object is correctly removed from the table.
-   */
-  public Boolean Delete(Event event) { return null; }
+  public Boolean Delete(String username) {
+    String sql = "DELETE FROM Events WHERE AssociatedUsername = ?;";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+      stmt.setString(1,username);
+      stmt.executeUpdate();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Clears the Event table in the database.

@@ -36,7 +36,7 @@ public class ClearHandler implements HttpHandler {
         success = true;
       }
 
-      if (!success) {
+      if (! success) {
         exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
         exchange.getResponseBody().close();
       }
