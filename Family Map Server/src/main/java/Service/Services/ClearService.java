@@ -8,6 +8,7 @@ import Service.Results.*;
  * Class that will handle Clear business logic and determine if a request was successful.
  */
 public class ClearService {
+
   private ClearResult clearResult;
 
   /**
@@ -31,7 +32,7 @@ public class ClearService {
     } catch (DataAccessException e) {
       System.out.println("Clear did not succeed.");
       head.closeConnection(false);
-      clearResult = new ClearResult(clearResult.getInvalidDatabaseClear());
+      clearResult = new ClearResult("Error: The database was not cleared successfully.");
       return clearResult;
     }
   }

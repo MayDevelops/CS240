@@ -1,7 +1,6 @@
 package Server.Handler;
 
 import DataAccessObjects.DataAccessException;
-import Service.Requests.EventRequest;
 import Service.Results.EventResult;
 import Service.Services.EventService;
 import com.google.gson.Gson;
@@ -23,21 +22,21 @@ public class EventHandler implements HttpHandler {
     EventService eventService = new EventService();
 
     try {
-      if(exchange.getRequestMethod().equalsIgnoreCase("get")) {
-        if(exchange.getRequestHeaders().containsKey("Authorization")) {
+      if (exchange.getRequestMethod().equalsIgnoreCase("get")) {
+        if (exchange.getRequestHeaders().containsKey("Authorization")) {
           String authToken = exchange.getRequestHeaders().getFirst("Authorization");
           String uri = exchange.getRequestURI().toString();
 
-          if(uri.equals("/event")) {
+          if (uri.equals("/event")) {
             EventResult eventResult = eventService.event(authToken);
-            if(eventResult == null) {
+            if (eventResult == null) {
               response = "{ \"message\": \"" + eventResult.getMessage() + "\"}";
             } else {
               response = gson.toJson(eventResult);
             }
-          } else if(uri.substring(0,7).equals("/event/")) {
+          } else if (uri.substring(0, 7).equals("/event/")) {
             EventResult eventResult = eventService.event(uri.substring(7), authToken);
-            if(!(eventResult.getMessage() == null)) {
+            if (! (eventResult.getMessage() == null)) {
               response = "{ \"message\": \"" + eventResult.getMessage() + "\"}";
             } else {
               response = gson.toJson(eventResult);
@@ -46,15 +45,15 @@ public class EventHandler implements HttpHandler {
             response = "Error: Request is invalid.";
           }
 
-          exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,0);
+          exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
           OutputStream responseBody = exchange.getResponseBody();
-          ToString(response,responseBody);
+          ToString(response, responseBody);
           responseBody.close();
           success = true;
         }
       }
-      if(!success) {
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST,0);
+      if (! success) {
+        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
         exchange.getResponseBody().close();
       }
     } catch (IOException | DataAccessException e) {
@@ -71,7 +70,6 @@ public class EventHandler implements HttpHandler {
     s.write(in);
     s.flush();
   }
-
 
 
 }

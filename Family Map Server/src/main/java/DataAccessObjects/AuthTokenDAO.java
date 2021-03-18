@@ -40,6 +40,8 @@ public class AuthTokenDAO {
 
       stmt.executeUpdate();
     } catch (SQLException e) {
+      System.out.println(authToken.getUsername());
+      System.out.println(authToken.getAuthToken());
       throw new DataAccessException("Error encountered while inserting into the database");
     }
   }

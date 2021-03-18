@@ -162,7 +162,7 @@ public class DatabaseHead {
       String sqlAuthToken = "CREATE TABLE IF NOT EXISTS `AuthToken` (\n" +
               "\t`Username`\ttext NOT NULL,\n" +
               "\t`Auth_Token`\ttext NOT NULL UNIQUE,\n" +
-              "\tPRIMARY KEY(`Username`)\n" +
+              "\tPRIMARY KEY(`Auth_Token`)\n" +
               ");\n";
 
       System.out.println("Attempting to create new tables...\n");

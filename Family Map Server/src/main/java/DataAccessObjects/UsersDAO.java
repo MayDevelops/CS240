@@ -63,8 +63,22 @@ public class UsersDAO {
    */
   public boolean Clear() throws DataAccessException {
     boolean success = false;
-    String sql = "DROP TABLE IF EXISTS Users;";
-    try(PreparedStatement stmt = conn.prepareStatement(sql)) {
+    PreparedStatement stmt = null;
+    String sqlUsersDrop = "DROP TABLE IF EXISTS Users;";
+    String sqlUsersCreate = "CREATE TABLE IF NOT EXISTS `Users` (\n" +
+            "\t`Username`\ttext NOT NULL,\n" +
+            "\t`Password`\ttext NOT NULL,\n" +
+            "\t`Email`\ttext NOT NULL,\n" +
+            "\t`First_Name`\ttext NOT NULL,\n" +
+            "\t`Last_Name`\ttext NOT NULL,\n" +
+            "\t`Gender`\ttext NOT NULL,\n" +
+            "\t`Person_ID`\ttext NOT NULL,\n" +
+            "\tPRIMARY KEY(`Username`)\n" +
+            ");\n";
+    try {
+      stmt = conn.prepareStatement(sqlUsersDrop);
+      stmt.executeUpdate();
+      stmt = conn.prepareStatement(sqlUsersCreate);
       stmt.executeUpdate();
       success = true;
     } catch (SQLException e) {

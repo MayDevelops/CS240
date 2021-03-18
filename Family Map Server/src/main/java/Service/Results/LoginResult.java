@@ -1,37 +1,30 @@
 package Service.Results;
+
 /**
  * A class that returns a response based on the success of the operation provided by the service.
  */
-public class LoginResult extends  Result {
+public class LoginResult {
 
   private String authToken;
   private String username;
   private String personID;
+  private String message;
 
-  /**
-   * The constructor for the login result that will either create a success or failure message.
-   * @param success determines if the result is success or failure.
-   * @param setAuthToken the authtoken to be assigned to the user if successful.
-   * @param setUsername the username associated with the user.
-   * @param setPersonID the unique personID associated with the user.
-   */
-  public LoginResult(Boolean success, String setAuthToken, String setUsername, String setPersonID) {
+  public LoginResult(String setMessage) { this.setMessage(setMessage); }
 
-    if(success) {
-      this.setAuthToken(setAuthToken);
-      this.setUsername(setUsername);
-      this.setPersonID(setPersonID);
-      //create success messages
-    } else {
-      //create error messages
-    }
+  public LoginResult(String setAuthToken, String setUsername, String setPersonID) {
+    this.setAuthToken(setAuthToken);
+    this.setUsername(setUsername);
+    this.setPersonID(setPersonID);
   }
 
   public String getAuthToken() { return authToken; }
   public String getUsername() { return username; }
   public String getPersonID() { return personID; }
+  public String getMessage() { return message; }
 
-  public void setAuthToken(String authToken) { this.authToken = authToken; }
-  public void setUsername(String username) { this.username = username; }
-  public void setPersonID(String personID) { this.personID = personID; }
+  public void setAuthToken(String setAuthToken) { this.authToken = setAuthToken; }
+  public void setUsername(String setUsername) { this.username = setUsername; }
+  public void setPersonID(String setPersonID) { this.personID = setPersonID; }
+  public void setMessage(String setMessage) { this.message = setMessage; }
 }

@@ -14,7 +14,7 @@ public class AuthToken {
    * The default constructor that initializes all of the local variables to null.
    */
   public AuthToken() {
-    authToken = null;
+    authToken = UUID.randomUUID().toString();
     username = null;
   }
 
