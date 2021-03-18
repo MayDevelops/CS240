@@ -38,7 +38,7 @@ class DatabaseHeadTest {
   }
 
   @Test
-  void openConnectionPass() {
+  void OpenConnectionPass() {
     try {
       conn = db.getConnection();
       assertNotNull(conn);
@@ -49,12 +49,12 @@ class DatabaseHeadTest {
   }
 
   @Test
-  void openConnectionFail() {
+  void OpenConnectionFail() {
     assertNull(db.conn);
   }
 
   @Test
-  void getConnection() {
+  void GetConnectionPass() {
     try {
       assertNotNull(db.getConnection());
     } catch (DataAccessException e) {
@@ -64,7 +64,7 @@ class DatabaseHeadTest {
   }
 
   @Test
-  void clearTablesPass() {
+  void ClearTablesPass() {
     boolean passed;
 
     try {

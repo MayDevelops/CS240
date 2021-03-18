@@ -60,7 +60,7 @@ public class RegisterServiceTest {
   }
 
   @Test
-  public void ExistingUser() throws DataAccessException {
+  public void ExistingUserPass() throws DataAccessException {
 
     RegisterService registerService = new RegisterService();
     RegisterRequest registerRequest = new RegisterRequest("A", "B", "C", "D",

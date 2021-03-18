@@ -51,7 +51,7 @@ public class FillServiceTest {
   }
 
   @Test
-  public void fill() throws DataAccessException {
+  public void FillPass() throws DataAccessException {
     PersonService personService = new PersonService();
     PersonResult personResult = personService.Person("1111");
 
@@ -70,7 +70,7 @@ public class FillServiceTest {
   }
 
   @Test
-  public void fillFail() throws DataAccessException {
+  public void FillFail() throws DataAccessException {
     PersonService personService = new PersonService();
     PersonResult personResult = personService.Person("2222");
     assertNull(personResult.getPersons());

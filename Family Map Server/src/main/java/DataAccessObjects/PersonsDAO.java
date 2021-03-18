@@ -106,11 +106,11 @@ public class PersonsDAO {
       stmt.setString(1, username);
       rs = stmt.executeQuery();
       while (rs.next()) {
-        Person p = new Person(rs.getString("Person_ID"), rs.getString("Username"),
+        Person person = new Person(rs.getString("Person_ID"), rs.getString("Username"),
                 rs.getString("First_Name"), rs.getString("Last_Name"), rs.getString("Gender"),
                 rs.getString("Father_ID"), rs.getString("Mother_ID"), rs.getString("Spouse_ID"));
 
-        persons.add(p);
+        persons.add(person);
       }
     } catch (SQLException e) {
       e.printStackTrace();

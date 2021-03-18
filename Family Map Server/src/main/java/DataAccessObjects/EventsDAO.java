@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * A class used for accessing the Event table in the database.
@@ -101,5 +102,41 @@ public class EventsDAO {
 
     }
     return null;
+  }
+
+  public ArrayList<Event> findAll(String username) throws DataAccessException {
+    ArrayList<Event> events = new ArrayList<Event>();
+    Event event;
+    ResultSet rs = null;
+    String sql = "SELECT * FROM Events WHERE AssociatedUsername = ?;";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+      stmt.setString(1, username);
+      rs = stmt.executeQuery();
+      while (rs.next()) {
+        event = new Event(rs.getString("EventID"), rs.getString("AssociatedUsername"),
+                rs.getString("PersonID"), rs.getString("Country"), rs.getString("City"),
+                rs.getString("EventType"), rs.getFloat("Latitude"), rs.getFloat("Longitude"),
+                rs.getInt("Year"));
+
+        events.add(event);
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw new DataAccessException("Error encountered while finding event");
+    } finally {
+      if(rs != null) {
+        try {
+          rs.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+    if(events.size() == 0) {
+      return null;
+    } else {
+      return events;
+    }
   }
 }

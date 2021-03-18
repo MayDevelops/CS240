@@ -44,7 +44,7 @@ public class PersonServiceTest {
   }
 
   @Test
-  public void personPass() throws DataAccessException, SQLException {
+  public void PersonPass() throws DataAccessException, SQLException {
     ArrayList<Person> persons = new ArrayList<Person>();
 
     Person pOne = new Person("1", "OptimusPrime", "Bob", "Saggit", "F", "123abc", "abc123", null);
@@ -88,7 +88,7 @@ public class PersonServiceTest {
   }
 
   @Test
-  public void personFail() throws DataAccessException, SQLException {
+  public void PersonFail() throws DataAccessException, SQLException {
     Person pOne = new Person("OptimusPappi", "autobots", "Oppy", "Poppy", "R", "m", "1234", null);
     Person pTwo = new Person("1", "OptimusPrime", "Bob", "Saggit", "F", "123abc", "abc123", null);
     Person pThree = new Person("1-2", "OptimusPrime", "Bill", "Saggy", "F", null, null, null);
@@ -117,12 +117,5 @@ public class PersonServiceTest {
     assertNull(personResult.getPersons());
     assertNotNull(personResult.getMessage());
     assertEquals("Error: AuthToken returned null.", personResult.getMessage());
-  }
-
-
-  @Test
-  public void allPersonFail() throws DataAccessException, SQLException {
-
-
   }
 }

@@ -45,7 +45,7 @@ public class EventsDAOTest {
   }
 
   @Test
-  public void insertPass() throws DataAccessException {
+  public void InsertPass() throws DataAccessException {
     //While insert returns a bool we can't use that to verify that our function actually worked
     //only that it ran without causing an error
     eDao.Insert(bestEvent);
@@ -61,7 +61,7 @@ public class EventsDAOTest {
   }
 
   @Test
-  public void insertFail() throws DataAccessException {
+  public void InsertFail() throws DataAccessException {
     //lets do this test again but this time lets try to make it fail
     //if we call the method the first time it will insert it successfully
     eDao.Insert(bestEvent);

@@ -41,7 +41,7 @@ class UsersDAOTest {
       db.closeConnection(false);
   }
   @Test
-  void insertPass() throws DataAccessException {
+  void InsertPass() throws DataAccessException {
     uDao.Insert(bestUser);
 
     User compareTest = uDao.find(bestUser.getUsername());
@@ -52,7 +52,7 @@ class UsersDAOTest {
   }
 
   @Test
-  void insertFail() throws DataAccessException {
+  void InsertFail() throws DataAccessException {
     uDao.Insert(bestUser);
 
     assertThrows(DataAccessException.class, ()-> uDao.Insert(bestUser));
@@ -86,13 +86,8 @@ class UsersDAOTest {
     }
   }
 
-//  @Test
-//  void Delete() throws DataAccessException {
-//
-//  }
-
   @Test
-  void clear() {
+  void Clear() {
     try {
       assertNull(uDao.find("OptimusPrime123"));
       uDao.Insert(bestUser);
@@ -104,7 +99,3 @@ class UsersDAOTest {
     }
   }
 }
-/*
-Stronger clear test:
-when trying to find the user, make sure that it returns null so that I know the clear is finding NULL.
- */

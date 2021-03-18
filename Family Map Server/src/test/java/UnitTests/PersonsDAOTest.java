@@ -35,7 +35,7 @@ class PersonsDAOTest {
     db.closeConnection(false);
   }
   @Test
-  void insertPass() throws DataAccessException {
+  void InsertPass() throws DataAccessException {
     pDao.Insert(bestPerson);
 
     Person compareTest = pDao.find(bestPerson.getPersonID());
@@ -46,7 +46,7 @@ class PersonsDAOTest {
   }
 
   @Test
-  void insertFail() throws DataAccessException {
+  void InsertFail() throws DataAccessException {
     pDao.Insert(bestPerson);
     assertThrows(DataAccessException.class, ()-> pDao.Insert(bestPerson));
   }
@@ -86,7 +86,7 @@ class PersonsDAOTest {
 //  }
 
   @Test
-  void clear() {
+  void ClearPass() {
     try {
       assertNull(pDao.find("Optimus123"));
       pDao.Insert(bestPerson);
