@@ -21,17 +21,17 @@ public class LoadServiceTest {
     Event eThree = new Event("456", "Megatron", "Alpha3", "England", "Yellow", "Kickin", 100f, 900f, 6969);
     Event eFour = new Event("678", "Megatron", "Alpha4", "Russia", "Green", "Alive", 100f, 900f, 6969);
 
-    Person personOne = new Person("1", "OptimusPrime", "Bob", "Saggit", "F", "123abc", "abc123", null);
-    Person personTwo = new Person("1-2", "OptimusPrime", "Bill", "Saggy", "F", null, null, null);
-    Person personThree = new Person("1-2-3", "Megatron", "Boop", "Saggin", "M", null, "abc1234", null);
-    Person personFour = new Person("1-2-3-4", "Megatron", "Bop", "Sagger", "M", "123abcd", null, null);
+    Person pOne = new Person("1", "OptimusPrime", "Bob", "Saggit", "F", "123abc", "abc123", null);
+    Person pTwo = new Person("1-2", "OptimusPrime", "Bill", "Saggy", "F", null, null, null);
+    Person pThree = new Person("1-2-3", "Megatron", "Boop", "Saggin", "M", null, "abc1234", null);
+    Person pFour = new Person("1-2-3-4", "Megatron", "Bop", "Sagger", "M", "123abcd", null, null);
 
-    User userOne = new User("OptimusPrime", "autobotsrox", "stars@gmail.com", "Op", "Prime", "R", "Op123");
-    User userTwo = new User("Megatron", "killoptimus", "bumblebeestinks@yahoo.com", "Mega", "Tron", "R", "Me123");
+    User uOne = new User("OptimusPrime", "autobotsrox", "stars@gmail.com", "Op", "Prime", "R", "Op123");
+    User uTwo = new User("Megatron", "killoptimus", "bumblebeestinks@yahoo.com", "Mega", "Tron", "R", "Me123");
 
     Event[] eventArray = new Event[]{eOne, eTwo, eThree, eFour};
-    Person[] personArray = new Person[]{personOne, personTwo, personThree, personFour};
-    User[] userArray = new User[]{userOne, userTwo};
+    Person[] personArray = new Person[]{pOne, pTwo, pThree, pFour};
+    User[] userArray = new User[]{uOne, uTwo};
 
     LoadRequest loadRequest = new LoadRequest(userArray, personArray, eventArray);
     LoadService loadService = new LoadService();
@@ -52,19 +52,19 @@ public class LoadServiceTest {
     Event eFour = new Event("678", "Megatron", "Alpha4", "Russia", "Green", "Alive", 100f, 900f, 6969);
     Event eBad = new Event();
 
-    Person personOne = new Person("1", "OptimusPrime", "Bob", "Saggit", "F", "123abc", "abc123", null);
-    Person personTwo = new Person("1-2", "OptimusPrime", "Bill", "Saggy", "F", null, null, null);
-    Person personThree = new Person("1-2-3", "Megatron", "Boop", "Saggin", "M", null, "abc1234", null);
-    Person personFour = new Person("1-2-3-4", "Megatron", "Bop", "Sagger", "M", "123abcd", null, null);
+    Person pOne = new Person("1", "OptimusPrime", "Bob", "Saggit", "F", "123abc", "abc123", null);
+    Person pTwo = new Person("1-2", "OptimusPrime", "Bill", "Saggy", "F", null, null, null);
+    Person pThree = new Person("1-2-3", "Megatron", "Boop", "Saggin", "M", null, "abc1234", null);
+    Person pFour = new Person("1-2-3-4", "Megatron", "Bop", "Sagger", "M", "123abcd", null, null);
 
-    User userOne = new User("OptimusPrime", "autobotsrox", "stars@gmail.com", "Op", "Prime", "R", "Op123");
-    User userTwo = new User("Megatron", "killoptimus", "bumblebeestinks@yahoo.com", "Mega", "Tron", "R", "Me123");
+    User uOne = new User("OptimusPrime", "autobotsrox", "stars@gmail.com", "Op", "Prime", "R", "Op123");
+    User uTwo = new User("Megatron", "killoptimus", "bumblebeestinks@yahoo.com", "Mega", "Tron", "R", "Me123");
 
-    Event[] eventArray = new Event[]{eOne, eTwo, eThree, eFour, eBad};
-    Person[] personArray = new Person[]{personOne, personTwo, personThree, personFour};
-    User[] userArray = new User[]{userOne, userTwo};
+    Event[] events = new Event[]{eOne, eTwo, eThree, eFour, eBad};
+    Person[] persons = new Person[]{pOne, pTwo, pThree, pFour};
+    User[] users = new User[]{uOne, uTwo};
 
-    LoadRequest loadRequest = new LoadRequest(userArray, personArray, eventArray);
+    LoadRequest loadRequest = new LoadRequest(users, persons, events);
     LoadService loadService = new LoadService();
     LoadResult loadResult = loadService.Load(loadRequest);
 

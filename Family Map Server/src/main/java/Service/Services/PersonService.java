@@ -40,7 +40,7 @@ public class PersonService {
         if (findPerson == null) {
           db.closeConnection(false);
           return new PersonResult("Error: Person was not found in the database.");
-        } else if (! findToken.getUsername().equals(findPerson.getAssociatedUsername())) {
+        } else if (!findToken.getUsername().equals(findPerson.getAssociatedUsername())) {
           db.closeConnection(false);
           return new PersonResult("Error: Person is not associated with " + findToken.getUsername() + ".");
         } else {

@@ -6,6 +6,9 @@ import Service.Services.ClearService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class ClearServiceTest {
 
@@ -14,6 +17,6 @@ public class ClearServiceTest {
     ClearService clearService = new ClearService();
     ClearResult clearResult = clearService.ClearDatabase();
 
-    Assert.assertTrue(clearResult.getMessage().equals("Clear succeeded."));
+    assertEquals(clearResult.getMessage(), "Clear succeeded.");
   }
 }

@@ -31,15 +31,15 @@ public class FillServiceTest {
     clearService.ClearDatabase();
     conn = db.getConnection();
 
-    AuthTokenDAO authTokenDao = new AuthTokenDAO(conn);
-    UsersDAO userDao = new UsersDAO(conn);
+    AuthTokenDAO authTokenDAO = new AuthTokenDAO(conn);
+    UsersDAO usersDAO = new UsersDAO(conn);
 
-    User testUser = new User("OptimusPrime", "autobots", "stars@yahoo",
+    User tempUser = new User("OptimusPrime", "autobots", "stars@yahoo",
             "Optimus", "Prime", "R", "OppyPoppy");
 
-    authTokenDao.Insert(new AuthToken("OptimusPrime", "1111"));
-    authTokenDao.Insert(new AuthToken("Megatron", "2222"));
-    userDao.Insert(testUser);
+    authTokenDAO.Insert(new AuthToken("OptimusPrime", "1111"));
+    authTokenDAO.Insert(new AuthToken("Megatron", "2222"));
+    usersDAO.Insert(tempUser);
 
     conn.commit();
   }
@@ -72,9 +72,9 @@ public class FillServiceTest {
   @Test
   public void fillFail() throws DataAccessException {
     PersonService personService = new PersonService();
-    PersonResult allPersonResults = personService.Person("2222");
-    assertNull(allPersonResults.getPersons());
-    assertEquals("Error: Megatron has no associated Persons.",allPersonResults.getMessage());
+    PersonResult personResult = personService.Person("2222");
+    assertNull(personResult.getPersons());
+    assertEquals("Error: Megatron has no associated Persons.",personResult.getMessage());
 
     FillService fillService = new FillService();
     FillResult fillResult = fillService.Fill("Megatron", - 1);
