@@ -88,12 +88,12 @@ public class UsersDAO {
     return success;
   }
 
-  public User find(String userName) throws DataAccessException {
+  public User find(String username) throws DataAccessException {
     User user;
     ResultSet rs = null;
     String sql = "SELECT * FROM Users WHERE Username = ?;";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-      stmt.setString(1, userName);
+      stmt.setString(1, username);
       rs = stmt.executeQuery();
       if (rs.next()) {
         user = new User(rs.getString("Username"), rs.getString("Password"),

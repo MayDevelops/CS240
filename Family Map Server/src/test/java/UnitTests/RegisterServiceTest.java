@@ -37,7 +37,7 @@ public class RegisterServiceTest {
     RegisterResult registerResult = registerService.Register(registerRequest);
 
     assertNotNull(registerResult.getPersonID());
-    assertNotNull(registerResult.getAuthToken());
+    assertNotNull(registerResult.getAuthtoken());
     assertNotNull(registerResult.getUsername());
     assertNull(registerResult.getMessage());
     clearService.ClearDatabase();
@@ -54,7 +54,7 @@ public class RegisterServiceTest {
 
     assertNotNull(registerResult.getMessage());
     assertEquals("Error: Invalid input.", registerResult.getMessage());
-    assertNull(registerResult.getAuthToken());
+    assertNull(registerResult.getAuthtoken());
     assertNull(registerResult.getUsername());
     assertNull(registerResult.getPersonID());
   }
@@ -71,7 +71,7 @@ public class RegisterServiceTest {
 
     assertNotNull(registerResult.getMessage());
     assertEquals("Error: Username is already taken by another user.", registerResult.getMessage());
-    assertNull(registerResult.getAuthToken());
+    assertNull(registerResult.getAuthtoken());
     assertNull(registerResult.getUsername());
     assertNull(registerResult.getPersonID());
 

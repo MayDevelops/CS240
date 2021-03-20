@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class EventResult {
 
-  private ArrayList<Event> events;
+  private ArrayList<Event> data;
   private String eventID;
   private String associatedUsername;
   private String personID;
@@ -20,9 +20,10 @@ public class EventResult {
   private Float longitude;
   private Integer year;
   private String message;
+  private boolean success;
 
-  public EventResult(String setMessage) { this.setMessage(setMessage); }
-  public EventResult(ArrayList<Event> setEvents) { this.setEvents(setEvents); }
+  public EventResult(String setMessage, boolean setSuccess) { this.setMessage(setMessage); this.setSuccess(setSuccess); }
+  public EventResult(ArrayList<Event> setEvents) { this.setData(setEvents); this.setSuccess(true);}
 
   public EventResult(Event event, String username) {
       this.setEventID(event.getEventID());
@@ -34,9 +35,10 @@ public class EventResult {
       this.setLatitude(event.getLatitude());
       this.setLongitude(event.getLongitude());
       this.setYear(event.getYear());
+      this.setSuccess(true);
   }
 
-  public ArrayList<Event> getEvents() { return events; }
+  public ArrayList<Event> getData() { return data; }
   public String getEventID() { return eventID; }
   public String getAssociatedUsername() { return associatedUsername; }
   public String getPersonID() { return personID; }
@@ -47,8 +49,9 @@ public class EventResult {
   public Float getLongitude() { return longitude; }
   public Integer getYear() { return year; }
   public String getMessage() { return message; }
+  public boolean getSuccess() { return success; }
 
-  public void setEvents(ArrayList<Event> setEvents) { this.events = setEvents; }
+  public void setData(ArrayList<Event> setEvents) { this.data = setEvents; }
   public void setEventID(String setEventID) { this.eventID = setEventID; }
   public void setAssociatedUsername(String setAssociatedUsername) { this.associatedUsername = setAssociatedUsername; }
   public void setPersonID(String setPersonID) { this.personID = setPersonID; }
@@ -59,6 +62,7 @@ public class EventResult {
   public void setLongitude(Float setLongitude) { this.longitude = setLongitude; }
   public void setYear(Integer setYear) { this.year = setYear; }
   public void setMessage(String setMessage) { this.message = setMessage; }
+  public void setSuccess(boolean setSuccess) { this.success = setSuccess; }
 }
 
 

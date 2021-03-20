@@ -12,17 +12,7 @@ import java.sql.SQLException;
  */
 public class AuthTokenDAO {
 
-  private String userName;
-  private String password;
-  private String authToken;
   private Connection conn;
-
-  public AuthTokenDAO() {
-    userName = null;
-    password = null;
-    authToken = null;
-  }
-
   public AuthTokenDAO(Connection conn) {this.conn = conn; }
 
 
@@ -36,12 +26,9 @@ public class AuthTokenDAO {
 
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
       stmt.setString(1, authToken.getUsername());
-      stmt.setString(2, authToken.getAuthToken());
-
+      stmt.setString(2, authToken.getAuthtoken());
       stmt.executeUpdate();
     } catch (SQLException e) {
-      System.out.println(authToken.getUsername());
-      System.out.println(authToken.getAuthToken());
       throw new DataAccessException("Error encountered while inserting into the database");
     }
   }
@@ -87,13 +74,6 @@ public class AuthTokenDAO {
    */
   public Boolean Clear(AuthToken authToken) { return null; }
 
-  public String getAuthToken(User user) { return null; }
   public String getUserName(User user) { return user.getUsername(); }
   public String getPassword(User user) { return user.getPassword(); }
-
-  public void setAuthToken(User user) { user.setAuthTokens(authToken); }
-
-
-
-
 }

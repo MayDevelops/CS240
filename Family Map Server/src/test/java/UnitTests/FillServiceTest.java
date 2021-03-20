@@ -55,15 +55,15 @@ public class FillServiceTest {
     PersonService personService = new PersonService();
     PersonResult personResult = personService.Person("1111");
 
-    assertNull(personResult.getPersons());
+    assertNull(personResult.getData());
     assertEquals("Error: OptimusPrime has no associated Persons.", personResult.getMessage());
 
     FillService fillService = new FillService();
     FillResult fillResult = fillService.Fill("OptimusPrime", 4);
 
     personResult = personService.Person("1111");
-    assertNotNull(personResult.getPersons());
-    assertEquals(personResult.getPersons().size(), 31);
+    assertNotNull(personResult.getData());
+    assertEquals(personResult.getData().size(), 31);
     assertNotEquals("User was not found.", fillResult.getMessage());
     assertNotEquals("Number of generations is not valid.", fillResult.getMessage());
     assertNotEquals("FatalError", fillResult.getMessage());
@@ -73,7 +73,7 @@ public class FillServiceTest {
   public void FillFail() throws DataAccessException {
     PersonService personService = new PersonService();
     PersonResult personResult = personService.Person("2222");
-    assertNull(personResult.getPersons());
+    assertNull(personResult.getData());
     assertEquals("Error: Megatron has no associated Persons.",personResult.getMessage());
 
     FillService fillService = new FillService();

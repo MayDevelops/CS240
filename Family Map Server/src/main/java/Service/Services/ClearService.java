@@ -25,14 +25,14 @@ public class ClearService {
       head.ClearTables();
       head.closeConnection(true);
 
-      System.out.println("Clear was successful!\n");
+      System.out.println("Clear was successful!");
 
-      clearResult = new ClearResult("Clear succeeded.");
+      clearResult = new ClearResult("Clear succeeded.", true);
       return clearResult;
     } catch (DataAccessException e) {
       System.out.println("Clear did not succeed.");
       head.closeConnection(false);
-      clearResult = new ClearResult("Error: The database was not cleared successfully.");
+      clearResult = new ClearResult("Error: The database was not cleared successfully.", false);
       return clearResult;
     }
   }

@@ -7,14 +7,14 @@ import java.util.UUID;
  */
 public class AuthToken {
 
-  private String authToken;
+  private String authtoken;
   private String username;
 
   /**
    * The default constructor that initializes all of the local variables to null.
    */
   public AuthToken() {
-    authToken = UUID.randomUUID().toString();
+    authtoken = UUID.randomUUID().toString();
     username = null;
   }
 
@@ -25,7 +25,7 @@ public class AuthToken {
    */
   public AuthToken(String setUsername) {
     this.username = setUsername;
-    this.authToken = UUID.randomUUID().toString();
+    this.authtoken = UUID.randomUUID().toString();
   }
 
   /**
@@ -35,15 +35,12 @@ public class AuthToken {
    */
   public AuthToken(String setUsername, String setAuthToken) {
     this.username = setUsername;
-    this.authToken = setAuthToken;
+    this.authtoken = setAuthToken;
   }
 
-  public String getAuthToken() {return authToken; }
+  public String getAuthtoken() { return authtoken; }
   public String getUsername() { return username; }
 
-  public void setAuthToken(String authToken) { this.authToken = authToken; }
+  public void setAuthtoken(String authtoken) { this.authtoken = authtoken; }
   public void setUsername(String username) { this.username = username; }
-
-
-
 }

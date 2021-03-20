@@ -46,7 +46,7 @@ public class RegisterService {
     usersDAO = new UsersDAO(conn);
 
     if (! ValidInput(r)) {
-      return new RegisterResult("Error: Invalid input.");
+      return new RegisterResult("Error: Invalid input.", false);
     }
 
     CreatePerson(r);
@@ -63,16 +63,15 @@ public class RegisterService {
         Insert(generationStorage.getPersonsArray(), generationStorage.getEventsArray());
 
         db.closeConnection(true);
-        return new RegisterResult(authToken.getAuthToken(), user.getUsername(),
-                person.getPersonID());
+        return new RegisterResult(authToken.getAuthtoken(), user.getUsername(), person.getPersonID());
       } else {
         db.closeConnection(false);
-        return new RegisterResult("Error: Username is already taken by another user.");
+        return new RegisterResult("Error: Username is already taken by another user.", false);
       }
     } catch (DataAccessException e) {
       e.printStackTrace();
       db.closeConnection(false);
-      return new RegisterResult(e.toString());
+      return new RegisterResult(e.toString(), false);
     }
 
   }
@@ -104,10 +103,18 @@ public class RegisterService {
   }
 
   private void Insert(ArrayList<Person> persons, ArrayList<Event> events) throws DataAccessException {
-    if (persons.size() == 0) { throw new DataAccessException("Error: Persons array is empty."); }
-    if (events.size() == 0) { throw new DataAccessException("Error: Events array is empty."); }
-    for (Person temp : persons) { personsDAO.Insert(temp); }
-    for (Event temp : events) { eventsDAO.Insert(temp); }
+    if (persons.size() == 0) {
+      throw new DataAccessException("Error: Persons array is empty.");
+    }
+    if (events.size() == 0) {
+      throw new DataAccessException("Error: Events array is empty.");
+    }
+    for (Person temp : persons) {
+      personsDAO.Insert(temp);
+    }
+    for (Event temp : events) {
+      eventsDAO.Insert(temp);
+    }
   }
 
 }

@@ -75,15 +75,15 @@ public class PersonServiceTest {
 
     personResult = personService.Person("2222");
 
-    assertNotNull(personResult.getPersons());
-    assertEquals(2, personResult.getPersons().size());
+    assertNotNull(personResult.getData());
+    assertEquals(2, personResult.getData().size());
     assertNull(personResult.getMessage());
 
     persons.add(pFour);
     persons.add(pFive);
 
     for (int i = 0; i < persons.size(); i++) {
-      assertEquals(persons.get(i), personResult.getPersons().get(i));
+      assertEquals(persons.get(i), personResult.getData().get(i));
     }
   }
 
@@ -114,7 +114,7 @@ public class PersonServiceTest {
 
     personResult = personService.Person("10");
 
-    assertNull(personResult.getPersons());
+    assertNull(personResult.getData());
     assertNotNull(personResult.getMessage());
     assertEquals("Error: AuthToken returned null.", personResult.getMessage());
   }

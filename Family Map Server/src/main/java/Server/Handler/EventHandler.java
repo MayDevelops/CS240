@@ -16,10 +16,10 @@ public class EventHandler implements HttpHandler {
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
-    boolean success = false;
     String response;
     Gson gson = new Gson();
     EventService eventService = new EventService();
+    EventResult eventResult = new EventResult("Error: Fatal result error.", false);
 
     try {
       if (exchange.getRequestMethod().equalsIgnoreCase("get")) {
@@ -28,14 +28,14 @@ public class EventHandler implements HttpHandler {
           String uri = exchange.getRequestURI().toString();
 
           if (uri.equals("/event")) {
-            EventResult eventResult = eventService.event(authToken);
+            eventResult = eventService.event(authToken);
             if (eventResult == null) {
               response = "{ \"message\": \"" + eventResult.getMessage() + "\"}";
             } else {
               response = gson.toJson(eventResult);
             }
           } else if (uri.substring(0, 7).equals("/event/")) {
-            EventResult eventResult = eventService.event(uri.substring(7), authToken);
+            eventResult = eventService.event(uri.substring(7), authToken);
             if (! (eventResult.getMessage() == null)) {
               response = "{ \"message\": \"" + eventResult.getMessage() + "\"}";
             } else {
@@ -44,17 +44,18 @@ public class EventHandler implements HttpHandler {
           } else {
             response = "Error: Request is invalid.";
           }
-
-          exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-          OutputStream responseBody = exchange.getResponseBody();
-          ToString(response, responseBody);
-          responseBody.close();
-          success = true;
+          if (eventResult.getSuccess()) {
+            exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+            OutputStream responseBody = exchange.getResponseBody();
+            ToString(response, responseBody);
+            responseBody.close();
+          } else {
+            exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+            OutputStream responseBody = exchange.getResponseBody();
+            ToString(response, responseBody);
+            responseBody.close();
+          }
         }
-      }
-      if (! success) {
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-        exchange.getResponseBody().close();
       }
     } catch (IOException | DataAccessException e) {
       e.printStackTrace();

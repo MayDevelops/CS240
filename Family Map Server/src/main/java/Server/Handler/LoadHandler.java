@@ -22,26 +22,26 @@ public class LoadHandler implements HttpHandler {
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
-    boolean success = false;
     try {
       if (exchange.getRequestMethod().equalsIgnoreCase("post")) {
         String requestBody = StringConversion(exchange.getRequestBody());
         LoadRequest loadRequest = gson.fromJson(requestBody, LoadRequest.class);
         LoadResult loadResult = service.Load(loadRequest);
         String response = gson.toJson(loadResult);
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-        OutputStream responseBody = exchange.getResponseBody();
-        ToString(response, responseBody);
-        responseBody.close();
-        success = true;
-      }
 
-      if (!success) {
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-        exchange.getResponseBody().close();
+        if (loadResult.getSuccess()) {
+          exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+          OutputStream responseBody = exchange.getResponseBody();
+          ToString(response, responseBody);
+          responseBody.close();
+        } else {
+          exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+          OutputStream responseBody = exchange.getResponseBody();
+          ToString(response, responseBody);
+          responseBody.close();
+        }
       }
-    }
-    catch (DataAccessException | IOException inputException) {
+    } catch (DataAccessException | IOException inputException) {
       exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
       exchange.getResponseBody().close();
       inputException.printStackTrace();

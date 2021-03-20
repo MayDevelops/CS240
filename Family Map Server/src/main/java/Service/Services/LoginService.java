@@ -32,22 +32,22 @@ public class LoginService {
 
     if (! isLoginValid(r)) {
       db.closeConnection(false);
-      return new LoginResult("Error: Input is invalid.");
+      return new LoginResult("Error: Input is invalid.", false);
     }
 
     user = usersDAO.find(r.getUsername());
 
     if (user == null) {
       db.closeConnection(false);
-      return new LoginResult("Error: Unable to retrieve requested user, user does not exist.");
+      return new LoginResult("Error: Unable to retrieve requested user, user does not exist.", false);
     } else if (! user.getPassword().equals(r.getPassword())) {
       db.closeConnection(false);
-      return new LoginResult("Error: Password is incorrect.");
+      return new LoginResult("Error: Password is incorrect.", false);
     } else {
       authToken.setUsername(r.getUsername());
       authTokenDAO.Insert(authToken);
       db.closeConnection(true);
-      return new LoginResult(authToken.getAuthToken(), user.getUsername(), user.getPersonID());
+      return new LoginResult(authToken.getAuthtoken(), user.getUsername(), user.getPersonID());
     }
   }
 

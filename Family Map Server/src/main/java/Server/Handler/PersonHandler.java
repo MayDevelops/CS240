@@ -27,28 +27,32 @@ public class PersonHandler implements HttpHandler {
     try {
       if (exchange.getRequestMethod().equalsIgnoreCase("get")) {
         if (exchange.getRequestHeaders().containsKey("Authorization")) {
-          String authToken = exchange.getRequestHeaders().getFirst("Authorization");
+          String authtoken = exchange.getRequestHeaders().getFirst("Authorization");
           String uri = exchange.getRequestURI().toString();
 
           if (uri.equals("/person")) {
-            personResult = personService.Person(authToken);
+            personResult = personService.Person(authtoken);
             response = gson.toJson(personResult);
           } else if (uri.substring(0, 8).equals("/person/")) {
-            personResult = personService.Person(uri.substring(8), authToken);
+            personResult = personService.Person(uri.substring(8), authtoken);
             response = gson.toJson(personResult);
           } else {
             response = "Error: Request is not valid.";
           }
-          exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,0);
-          OutputStream responseBody = exchange.getResponseBody();
-          ToString(response, responseBody);
-          responseBody.close();
-          success = true;
+
+          if (personResult.getSuccess()) {
+            exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+            OutputStream responseBody = exchange.getResponseBody();
+            ToString(response, responseBody);
+            responseBody.close();
+          } else {
+            exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+            OutputStream responseBody = exchange.getResponseBody();
+            ToString(response, responseBody);
+            responseBody.close();
+          }
+
         }
-      }
-      if(! success) {
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST,0);
-        exchange.getResponseBody().close();
       }
     } catch (DataAccessException e) {
       e.printStackTrace();

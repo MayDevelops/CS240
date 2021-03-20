@@ -46,7 +46,7 @@ public class LoadService {
 
     try {
       if (! ValidInput(r)) {
-        return new LoadResult("Error: Invalid input.");
+        return new LoadResult("Error: Invalid input.", false);
       }
 
       try {
@@ -54,7 +54,7 @@ public class LoadService {
       } catch (DataAccessException failedToClear) {
         failedToClear.printStackTrace();
         db.closeConnection(false);
-        return new LoadResult("Error: Failed to clear database before loading.");
+        return new LoadResult("Error: Failed to clear database before loading.", false);
       }
 
       InsertUsers(r.getUsers());
@@ -70,13 +70,13 @@ public class LoadService {
               r.getPersons().length + " Persons, and " +
               r.getEvents().length + " Events.";
 
-      return new LoadResult(successString);
+      return new LoadResult(successString, true);
 
     } catch (DataAccessException | SQLException e) {
       e.printStackTrace();
       db.closeConnection(false);
       clearService.ClearDatabase();
-      return new LoadResult(e.toString());
+      return new LoadResult(e.toString(), false);
     }
   }
 

@@ -26,22 +26,22 @@ public class EventService {
    * @param r the authtoken passed in to get the event logic for the user.
    * @return the result of the operation.
    */
-  public EventResult event(String authToken) throws DataAccessException {
+  public EventResult event(String authtoken) throws DataAccessException {
     db = new DatabaseHead();
     conn = db.getConnection();
     authTokenDAO = new AuthTokenDAO(conn);
     eventsDAO = new EventsDAO(conn);
 
     try {
-      AuthToken findToken = authTokenDAO.find(authToken);
+      AuthToken findToken = authTokenDAO.find(authtoken);
       if (findToken == null) {
         db.closeConnection(false);
-        return new EventResult("Error: Invalid authToken returned null.");
+        return new EventResult("Error: Invalid authtoken returned null.", false);
       } else {
         ArrayList<Event> events = eventsDAO.findAll(findToken.getUsername());
         if (events == null) {
           db.closeConnection(false);
-          return new EventResult("Error: Person is not associated with " + findToken.getUsername() + ".");
+          return new EventResult("Error: Person is not associated with " + findToken.getUsername() + ".", false);
         } else {
           db.closeConnection(true);
           return new EventResult(events);
@@ -50,29 +50,29 @@ public class EventService {
     } catch (DataAccessException e) {
       e.printStackTrace();
       db.closeConnection(false);
-      return new EventResult("Error: Database fatal error.");
+      return new EventResult("Error: Database fatal error.", false);
     }
   }
 
-  public EventResult event(String eventID, String authToken) throws DataAccessException {
+  public EventResult event(String eventID, String authtoken) throws DataAccessException {
     db = new DatabaseHead();
     conn = db.getConnection();
     authTokenDAO = new AuthTokenDAO(conn);
     eventsDAO = new EventsDAO(conn);
 
     try {
-      AuthToken findToken = authTokenDAO.find(authToken);
+      AuthToken findToken = authTokenDAO.find(authtoken);
       if (findToken == null) {
         db.closeConnection(false);
-        return new EventResult("Error: Invalid authToken returned null.");
+        return new EventResult("Error: Invalid authtoken returned null.", false);
       } else {
         Event findEvent = eventsDAO.find(eventID);
         if (findEvent == null) {
           db.closeConnection(false);
-          return new EventResult("Error: Event does not exist.");
+          return new EventResult("Error: Event does not exist.", false);
         } else if (! findToken.getUsername().equals(findEvent.getAssociatedUsername())) {
           db.closeConnection(false);
-          return new EventResult("Error: Event is not associated with " + findToken.getUsername() + ".");
+          return new EventResult("Error: Event is not associated with " + findToken.getUsername() + ".", false);
         } else {
           db.closeConnection(true);
           return new EventResult(findEvent, findToken.getUsername());
@@ -81,7 +81,7 @@ public class EventService {
     } catch (DataAccessException e) {
       e.printStackTrace();
       db.closeConnection(false);
-      return new EventResult("Error: Database fatal error.");
+      return new EventResult("Error: Database fatal error.", false);
     }
   }
 }

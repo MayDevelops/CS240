@@ -75,8 +75,8 @@ public class EventServiceTest {
 
     eventResult = eventService.event("1111");
 
-    assertNotNull(eventResult.getEvents());
-    assertEquals(eventResult.getEvents().size(), 4);
+    assertNotNull(eventResult.getData());
+    assertEquals(eventResult.getData().size(), 4);
     assertNull(eventResult.getMessage());
 
     ArrayList<Event> eventArray = new ArrayList<Event>();
@@ -86,7 +86,7 @@ public class EventServiceTest {
     eventArray.add(eThree);
     eventArray.add(eFive);
 
-    for (int i = 0; i < eventArray.size(); i++) { assertEquals(eventArray.get(i), eventResult.getEvents().get(i)); }
+    for (int i = 0; i < eventArray.size(); i++) { assertEquals(eventArray.get(i), eventResult.getData().get(i)); }
   }
 
   @Test
@@ -120,7 +120,7 @@ public class EventServiceTest {
 
     eventResult = eventService.event("2222");
 
-    assertNull(eventResult.getEvents());
+    assertNull(eventResult.getData());
     assertNotNull(eventResult.getMessage());
     assertEquals("Error: Person is not associated with Megatron.", eventResult.getMessage());
   }

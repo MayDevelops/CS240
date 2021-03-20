@@ -1,10 +1,5 @@
 package Service.Requests;
 
-import Models.AuthToken;
-import Service.Results.RegisterResult;
-
-import java.util.Set;
-
 /**
  * A class that packages a gson request and turns it into a Java object.
  */

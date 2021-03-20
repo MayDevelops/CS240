@@ -2,11 +2,10 @@ package Server.Handler;
 
 import DataAccessObjects.DataAccessException;
 import Service.Requests.RegisterRequest;
+import Service.Results.LoginResult;
 import Service.Results.RegisterResult;
 import Service.Services.*;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -24,7 +23,6 @@ public class RegisterHandler implements HttpHandler {
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
-    boolean success = false;
     try {
       System.out.println("Attempting to register in Handler.\n");
       if (exchange.getRequestMethod().equalsIgnoreCase("post")) {
@@ -32,18 +30,17 @@ public class RegisterHandler implements HttpHandler {
         RegisterRequest registerRequest = gson.fromJson(requestBody, RegisterRequest.class);
         RegisterResult registerResult = service.Register(registerRequest);
         String response = gson.toJson(registerResult);
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-        OutputStream responseBody = exchange.getResponseBody();
-        ToString(response, responseBody);
-
-        responseBody.close();
-        success = true;
-
-        if (! success) {
+        if (registerResult.getSuccess()) {
+          exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+          OutputStream responseBody = exchange.getResponseBody();
+          ToString(response, responseBody);
+          responseBody.close();
+        } else {
           exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-          exchange.getResponseBody().close();
+          OutputStream responseBody = exchange.getResponseBody();
+          ToString(response, responseBody);
+          responseBody.close();
         }
-
       }
 
     } catch (IOException | DataAccessException e) {
@@ -54,9 +51,9 @@ public class RegisterHandler implements HttpHandler {
 
   }
 
-  private void ToString(String in, OutputStream out) throws IOException {
+  private void ToString(String sentResponse, OutputStream out) throws IOException {
     OutputStreamWriter s = new OutputStreamWriter(out);
-    s.write(in);
+    s.write(sentResponse);
     s.flush();
   }
 
@@ -64,5 +61,4 @@ public class RegisterHandler implements HttpHandler {
     Scanner scanner = new java.util.Scanner(is).useDelimiter("\\A");
     return scanner.hasNext() ? scanner.next() : "";
   }
-
 }

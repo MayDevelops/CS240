@@ -28,17 +28,17 @@ public class ClearHandler implements HttpHandler {
         String response = "{ \"message\": \"" + clearResult.getMessage() + "\"}";
         System.out.println("Response created: \"" + response + "\" \n");
 
-
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-        OutputStream responseBody = exchange.getResponseBody();
-        ToString(response, responseBody);
-        responseBody.close();
-        success = true;
-      }
-
-      if (! success) {
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-        exchange.getResponseBody().close();
+        if (clearResult.getSuccess()) {
+          exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+          OutputStream responseBody = exchange.getResponseBody();
+          ToString(response, responseBody);
+          responseBody.close();
+        } else {
+          exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+          OutputStream responseBody = exchange.getResponseBody();
+          ToString(response, responseBody);
+          responseBody.close();
+        }
       }
     } catch (IOException | DataAccessException e) {
       exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);

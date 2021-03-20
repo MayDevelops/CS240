@@ -16,7 +16,6 @@ public class FillHandler implements HttpHandler {
 
   FillService fillService = new FillService();
   Gson gson = new Gson();
-  boolean success = false;
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
@@ -36,15 +35,17 @@ public class FillHandler implements HttpHandler {
           fillResult = fillService.Fill(uri, 4);
           response = gson.toJson(fillResult);
         }
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-        OutputStream responseBody = exchange.getResponseBody();
-        ToString(response, responseBody);
-        responseBody.close();
-        success = true;
-      }
-      if (! success) {
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-        exchange.getResponseBody().close();
+        if (fillResult.getSuccess()) {
+          exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+          OutputStream responseBody = exchange.getResponseBody();
+          ToString(response, responseBody);
+          responseBody.close();
+        } else {
+          exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+          OutputStream responseBody = exchange.getResponseBody();
+          ToString(response, responseBody);
+          responseBody.close();
+        }
       }
     } catch (IOException | DataAccessException e) {
       e.printStackTrace();

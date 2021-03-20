@@ -33,31 +33,31 @@ public class FillService {
 
     if (numGen <= 0) {
       db.closeConnection(false);
-      return new FillResult("Error: Number of generations is less than or equal to 0.");
+      return new FillResult("Error: Number of generations is less than or equal to 0.", false);
     }
 
     try {
       if (usersDAO.find(username) == null) {
         db.closeConnection(false);
-        return new FillResult("Error: User does not exist.");
+        return new FillResult("Error: User does not exist.", false);
       } else if (! ClearUsersInfo(username)) {
         db.closeConnection(false);
         return new FillResult("Error: Failed to delete " + username + " Events and Persons" +
-                " information from the database.");
+                " information from the database.", false);
       } else {
         Person temp = UserToPerson(usersDAO.find(username));
         GenerationStorage generationStorage = generateData.PopulateGenerations(temp, numGen);
         Insert(generationStorage.getPersonsArray(), generationStorage.getEventsArray());
         db.closeConnection(true);
         return new FillResult("Successfully added " + generationStorage.getPersonsArray().size() +
-                " Persons and " + generationStorage.getEventsArray().size() + " Events.");
+                " Persons and " + generationStorage.getEventsArray().size() + " Events.", true);
       }
     } catch (DataAccessException e) {
       e.printStackTrace();
       db.closeConnection(false);
     }
     db.closeConnection(false);
-    return new FillResult("Error: Fatal fill error.");
+    return new FillResult("Error: Fatal fill error.", false);
   }
 
   private boolean ClearUsersInfo(String username) {
@@ -83,9 +83,17 @@ public class FillService {
   }
 
   private void Insert(ArrayList<Person> persons, ArrayList<Event> events) throws DataAccessException {
-    if (persons.size() == 0) { throw new DataAccessException("Error: Persons array is empty."); }
-    if (events.size() == 0) { throw new DataAccessException("Error: Events array is empty."); }
-    for (Person temp : persons) { personsDAO.Insert(temp); }
-    for (Event temp : events) { eventsDAO.Insert(temp); }
+    if (persons.size() == 0) {
+      throw new DataAccessException("Error: Persons array is empty.");
+    }
+    if (events.size() == 0) {
+      throw new DataAccessException("Error: Events array is empty.");
+    }
+    for (Person temp : persons) {
+      personsDAO.Insert(temp);
+    }
+    for (Event temp : events) {
+      eventsDAO.Insert(temp);
+    }
   }
 }

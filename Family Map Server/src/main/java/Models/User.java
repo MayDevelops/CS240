@@ -16,7 +16,6 @@ public class User {
   private String lastName;
   private String gender;
   private String personID;
-  private Set <AuthToken> authTokens;
 
   /**
    * This is the default constructor that will initialize all the local variables to null.
@@ -29,7 +28,6 @@ public class User {
     lastName = null;
     gender = null;
     personID = null;
-    authTokens = new TreeSet<>();
   }
 
   /**
@@ -60,7 +58,6 @@ public class User {
   public String getLastName() { return lastName; }
   public String getGender() { return gender; }
   public String getPersonID() { return personID; }
-  public Set <AuthToken> getAuthTokens() { return authTokens; }
 
   public void setUsername(String setUsername) { this.username = setUsername; }
   public void setPassword(String setPassword) { this.password = setPassword; }
@@ -69,7 +66,6 @@ public class User {
   public void setLastName(String setLastName) { this.lastName = setLastName; }
   public void setGender(String setGender) { this.gender = setGender; }
   public void setPersonID(String setPersonID) { this.personID = setPersonID; }
-  public void setAuthTokens(String setAuthToken) { this.authTokens.add(new AuthToken(username, setAuthToken)); }
 
   @Override
   public boolean equals(Object o) {

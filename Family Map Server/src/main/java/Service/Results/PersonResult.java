@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class PersonResult {
 
-  private ArrayList<Person> persons;
+  private ArrayList<Person> data;
   private String personID;
   private String associatedUsername;
   private String firstName;
@@ -18,8 +18,9 @@ public class PersonResult {
   private String motherID;
   private String spouseID;
   private String message;
+  private boolean success;
 
-  public PersonResult(String setMessage) { this.setMessage(setMessage); }
+  public PersonResult(String setMessage, boolean setBoolean) { this.setMessage(setMessage); this.setSuccess(setBoolean); }
 
   public PersonResult(Person p) {
       this.setPersonID(p.getPersonID());
@@ -30,15 +31,25 @@ public class PersonResult {
       this.setFatherID(p.getFatherID());
       this.setMotherID(p.getMotherID());
       this.setSpouseID(p.getSpouseID());
+      this.setSuccess(true);
   }
 
 
-  public PersonResult(ArrayList<Person> persons) {
-    this.setPersons(persons);
+  public PersonResult(ArrayList<Person> data, Person p) {
+    this.setPersonID(p.getPersonID());
+    this.setAssociatedUsername(p.getAssociatedUsername());
+    this.setFirstName(p.getFirstName());
+    this.setLastName(p.getLastName());
+    this.setGender(p.getGender());
+    this.setFatherID(p.getFatherID());
+    this.setMotherID(p.getMotherID());
+    this.setSpouseID(p.getSpouseID());
+    this.setData(data);
     this.setMessage(null);
+    this.setSuccess(true);
   }
 
-  public ArrayList<Person> getPersons() { return persons; }
+  public ArrayList<Person> getData() { return data; }
   public String getPersonID() { return personID; }
   public String getAssociatedUsername() { return associatedUsername; }
   public String getFirstName() { return firstName; }
@@ -48,8 +59,9 @@ public class PersonResult {
   public String getMotherID() { return motherID; }
   public String getSpouseID() { return spouseID; }
   public String getMessage() { return message; }
+  public boolean getSuccess() { return success; }
 
-  public void setPersons(ArrayList<Person> setPersons) { this.persons = setPersons; }
+  public void setData(ArrayList<Person> setPersons) { this.data = setPersons; }
   public void setPersonID(String setPersonID) { this.personID = setPersonID; }
   public void setAssociatedUsername(String setAssociatedUsername) { this.associatedUsername = setAssociatedUsername; }
   public void setFirstName(String setFirstName) { this.firstName = setFirstName; }
@@ -59,5 +71,6 @@ public class PersonResult {
   public void setMotherID(String setMotherID) { this.motherID = setMotherID; }
   public void setSpouseID(String setSpouseID) { this.spouseID = setSpouseID; }
   public void setMessage(String setMessage) { this.message = setMessage; }
+  public void setSuccess(boolean setSuccess) { this.success = setSuccess; }
 
 }

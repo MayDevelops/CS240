@@ -56,7 +56,7 @@ public class LoginServiceTest {
     assertEquals("OptimusPrime", loginResult.getUsername());
     assertNull(loginResult.getMessage());
     assertNotNull(loginResult.getPersonID());
-    assertNotNull(loginResult.getAuthToken());
+    assertNotNull(loginResult.getAuthtoken());
 
   }
 
@@ -66,7 +66,7 @@ public class LoginServiceTest {
     conn.commit();
 
     loginResult = loginService.login(new LoginRequest("Megatron", "OptimusIsSilly"));
-    assertNull(loginResult.getAuthToken());
+    assertNull(loginResult.getAuthtoken());
     assertNull(loginResult.getUsername());
     assertNull(loginResult.getPersonID());
     assertNotNull(loginResult.getMessage());
@@ -77,7 +77,7 @@ public class LoginServiceTest {
   public void LoginFailBadPassword() throws DataAccessException, SQLException {
     loginResult = loginService.login(new LoginRequest("OptimusPrime", "autobotsroxx"));
 
-    assertNull(loginResult.getAuthToken());
+    assertNull(loginResult.getAuthtoken());
     assertNull(loginResult.getUsername());
     assertNull(loginResult.getPersonID());
     assertNotNull(loginResult.getMessage());

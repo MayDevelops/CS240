@@ -6,9 +6,13 @@ package Service.Results;
 public class FillResult {
 
   private String message;
+  private boolean success;
 
-  public FillResult(String setMessage) { this.message = setMessage; }
+  public FillResult(String setMessage, boolean setSuccess) { this.setMessage(setMessage); this.setSuccess(success); }
 
   public String getMessage() { return message; }
-  public void SetMessage(String setMessage) { this.message = setMessage; }
+  public boolean getSuccess() { return success; }
+
+  public void setMessage(String setMessage) { this.message = setMessage; }
+  public void setSuccess(boolean setSuccess) { this.success = setSuccess; }
 }

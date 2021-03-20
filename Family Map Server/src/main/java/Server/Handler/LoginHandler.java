@@ -5,7 +5,6 @@ import Service.Requests.LoginRequest;
 import Service.Results.LoginResult;
 import Service.Services.LoginService;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -32,16 +31,17 @@ public class LoginHandler implements HttpHandler {
         LoginRequest loginRequest = gson.fromJson(requestBody, LoginRequest.class);
         LoginResult loginResult = service.login(loginRequest);
         String response = gson.toJson(loginResult);
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-        OutputStream responseBody = exchange.getResponseBody();
-        ToString(response, responseBody);
-        responseBody.close();
-        success = true;
-      }
-
-      if (! success) {
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-        exchange.getResponseBody().close();
+        if (loginResult.getSuccess()) {
+          exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+          OutputStream responseBody = exchange.getResponseBody();
+          ToString(response, responseBody);
+          responseBody.close();
+        } else {
+          exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+          OutputStream responseBody = exchange.getResponseBody();
+          ToString(response, responseBody);
+          responseBody.close();
+        }
       }
     } catch (IOException | DataAccessException | SQLException e) {
       e.printStackTrace();
