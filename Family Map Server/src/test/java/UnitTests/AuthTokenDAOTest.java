@@ -16,12 +16,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AuthTokenDAOTest {
   DatabaseHead db = new DatabaseHead();
-  Connection conn;
   ClearService clearService = new ClearService();
+
+  Connection conn;
   AuthToken optimusToken;
   AuthToken megatronToken;
   AuthToken bumbleToken;
-
   AuthTokenDAO aDAO;
 
 
@@ -33,8 +33,8 @@ class AuthTokenDAOTest {
     aDAO = new AuthTokenDAO(conn);
 
     optimusToken = new AuthToken("OptimusPrime", "OppyPoppy1234");
-    megatronToken = new AuthToken("Megatron","MeggaBronze4321");
-    bumbleToken = new AuthToken("BumbleBee","BumbleRumble9000");
+    megatronToken = new AuthToken("Megatron", "MeggaBronze4321");
+    bumbleToken = new AuthToken("BumbleBee", "BumbleRumble9000");
 
   }
 
@@ -71,7 +71,7 @@ class AuthTokenDAOTest {
 
     assertEquals("OptimusPrime", tempOptimus.getUsername());
     assertEquals("OppyPoppy1234", tempOptimus.getAuthtoken());
-    assertEquals("Megatron",tempMegatron.getUsername());
+    assertEquals("Megatron", tempMegatron.getUsername());
     assertEquals("MeggaBronze4321", tempMegatron.getAuthtoken());
     assertEquals("BumbleBee", tempBumble.getUsername());
     assertEquals("BumbleRumble9000", tempBumble.getAuthtoken());
@@ -85,8 +85,8 @@ class AuthTokenDAOTest {
 
     aDAO.Insert(optimusToken);
     aDAO.Insert(megatronToken);
-    assertThrows(DataAccessException.class, ()-> aDAO.Insert(optimusToken));
-    assertThrows(DataAccessException.class, ()-> aDAO.Insert(megatronToken));
+    assertThrows(DataAccessException.class, () -> aDAO.Insert(optimusToken));
+    assertThrows(DataAccessException.class, () -> aDAO.Insert(megatronToken));
 
     conn.commit();
 
@@ -98,7 +98,7 @@ class AuthTokenDAOTest {
 
     assertEquals("OptimusPrime", tempOptimus.getUsername());
     assertEquals("OppyPoppy1234", tempOptimus.getAuthtoken());
-    assertEquals("Megatron",tempMegatron.getUsername());
+    assertEquals("Megatron", tempMegatron.getUsername());
     assertEquals("MeggaBronze4321", tempMegatron.getAuthtoken());
   }
 

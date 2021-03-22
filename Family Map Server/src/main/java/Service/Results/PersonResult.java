@@ -1,4 +1,5 @@
 package Service.Results;
+
 import Models.*;
 
 import java.util.ArrayList;
@@ -20,18 +21,21 @@ public class PersonResult {
   private String message;
   private boolean success;
 
-  public PersonResult(String setMessage, boolean setBoolean) { this.setMessage(setMessage); this.setSuccess(setBoolean); }
+  public PersonResult(String setMessage, boolean setBoolean) {
+    this.setMessage(setMessage);
+    this.setSuccess(setBoolean);
+  }
 
   public PersonResult(Person p) {
-      this.setPersonID(p.getPersonID());
-      this.setAssociatedUsername(p.getAssociatedUsername());
-      this.setFirstName(p.getFirstName());
-      this.setLastName(p.getLastName());
-      this.setGender(p.getGender());
-      this.setFatherID(p.getFatherID());
-      this.setMotherID(p.getMotherID());
-      this.setSpouseID(p.getSpouseID());
-      this.setSuccess(true);
+    this.setPersonID(p.getPersonID());
+    this.setAssociatedUsername(p.getAssociatedUsername());
+    this.setFirstName(p.getFirstName());
+    this.setLastName(p.getLastName());
+    this.setGender(p.getGender());
+    this.setFatherID(p.getFatherID());
+    this.setMotherID(p.getMotherID());
+    this.setSpouseID(p.getSpouseID());
+    this.setSuccess(true);
   }
 
   public PersonResult(ArrayList<Person> data, Person p) {

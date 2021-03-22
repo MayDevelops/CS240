@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FillServiceTest {
   DatabaseHead db = new DatabaseHead();
   ClearService clearService = new ClearService();
+
   RegisterRequest registerRequest;
   Connection conn;
 
@@ -80,7 +81,7 @@ public class FillServiceTest {
     PersonService personService = new PersonService();
     PersonResult personResult = personService.Person("2222");
     assertNull(personResult.getData());
-    assertEquals("Error: Megatron has no associated Persons.",personResult.getMessage());
+    assertEquals("Error: Megatron has no associated Persons.", personResult.getMessage());
 
     FillService fillService = new FillService();
     FillResult fillResult = fillService.Fill("Megatron", - 1);

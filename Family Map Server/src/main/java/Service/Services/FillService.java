@@ -46,7 +46,8 @@ public class FillService {
       } else {
         Person temp = UserToPerson(usersDAO.Find(username));
         GenerationStorage generationStorage = generateData.PopulateGenerations(temp, numGen);
-        Insert(generationStorage.getPersonsArray(), generationStorage.getEventsArray());;
+        Insert(generationStorage.getPersonsArray(), generationStorage.getEventsArray());
+        ;
         db.closeConnection(true);
         return new FillResult("Successfully added " + generationStorage.getPersonsArray().size() +
                 " persons and " + generationStorage.getEventsArray().size() + " events.", true);

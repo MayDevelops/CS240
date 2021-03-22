@@ -22,6 +22,7 @@ public class AuthToken {
   /**
    * Parameterized constructor that accepts an already generated username and randomly creates an authToken
    * for the user
+   *
    * @param setUsername the already generated userName
    */
   public AuthToken(String setUsername) {
@@ -31,7 +32,8 @@ public class AuthToken {
 
   /**
    * Parameterized constructor that accepts an already generated authToken and a username
-   * @param setUsername the already generated username for this authToken
+   *
+   * @param setUsername  the already generated username for this authToken
    * @param setAuthToken the already generated authToken as this authToken
    */
   public AuthToken(String setUsername, String setAuthToken) {

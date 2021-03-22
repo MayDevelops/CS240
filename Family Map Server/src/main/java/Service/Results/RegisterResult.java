@@ -1,4 +1,5 @@
 package Service.Results;
+
 /**
  * A class that returns a response based on the success of the operation provided by the service.
  */
@@ -11,19 +12,24 @@ public class RegisterResult {
   boolean success;
 
   public RegisterResult() {}
-  public RegisterResult(String setError, boolean success) { this.setMessage(setError); this.setSuccess(success); }
+
+  public RegisterResult(String setError, boolean success) {
+    this.setMessage(setError);
+    this.setSuccess(success);
+  }
 
   /**
    * The constructor for the register result that will either create a success or failure message.
+   *
    * @param setAuthToken the authtoken to be assigned to the user if successful.
-   * @param setUsername the username associated with the user.
-   * @param setPersonID the unique personID associated with the user.
+   * @param setUsername  the username associated with the user.
+   * @param setPersonID  the unique personID associated with the user.
    */
   public RegisterResult(String setAuthToken, String setUsername, String setPersonID) {
-      this.setAuthToken(setAuthToken);
-      this.setUsername(setUsername);
-      this.setPersonID(setPersonID);
-      this.setSuccess(true);
+    this.setAuthToken(setAuthToken);
+    this.setUsername(setUsername);
+    this.setPersonID(setPersonID);
+    this.setSuccess(true);
   }
 
   public String getAuthtoken() { return authtoken; }

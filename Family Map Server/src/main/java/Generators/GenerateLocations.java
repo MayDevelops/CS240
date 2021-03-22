@@ -27,11 +27,11 @@ public class GenerateLocations {
       float latitude = location.get("latitude").getAsFloat();
       float longitude = location.get("longitude").getAsFloat();
 
-      return new Event(city,country,latitude,longitude);
+      return new Event(city, country, latitude, longitude);
 
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
-    return new Event("bad","bad", 00.00f,00.00f);
+    return new Event("bad", "bad", 00.00f, 00.00f);
   }
 }

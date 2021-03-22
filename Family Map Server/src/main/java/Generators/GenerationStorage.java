@@ -1,6 +1,7 @@
 package Generators;
 
 import java.util.ArrayList;
+
 import Models.Person;
 import Models.Event;
 
@@ -15,5 +16,6 @@ public class GenerationStorage {
   }
 
   public ArrayList<Person> getPersonsArray() { return persons; }
+
   public ArrayList<Event> getEventsArray() { return events; }
 }

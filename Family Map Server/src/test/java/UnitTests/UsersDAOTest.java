@@ -18,8 +18,7 @@ class UsersDAOTest {
   private UsersDAO uDao;
 
   @BeforeEach
-  public void setUp() throws DataAccessException
-  {
+  public void setUp() throws DataAccessException {
     //here we can set up any classes or variables we will need for the rest of our tests
     //lets create a new database
     db = new DatabaseHead();
@@ -41,8 +40,9 @@ class UsersDAOTest {
     //Here we close the connection to the database file so it can be opened elsewhere.
     //We will leave commit to false because we have no need to save the changes to the database
     //between test cases
-      db.closeConnection(false);
+    db.closeConnection(false);
   }
+
   @Test
   void InsertPass() throws DataAccessException {
     uDao.Insert(bestUser);
@@ -58,7 +58,7 @@ class UsersDAOTest {
   void InsertFail() throws DataAccessException {
     uDao.Insert(bestUser);
 
-    assertThrows(DataAccessException.class, ()-> uDao.Insert(bestUser));
+    assertThrows(DataAccessException.class, () -> uDao.Insert(bestUser));
   }
 
 

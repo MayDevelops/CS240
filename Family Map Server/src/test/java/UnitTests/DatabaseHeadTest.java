@@ -23,14 +23,14 @@ class DatabaseHeadTest {
 
   @AfterEach
   void tearDown() throws DataAccessException {
-      if(db.conn != null) {
-        db.closeConnection(false);
-      }
+    if (db.conn != null) {
+      db.closeConnection(false);
+    }
   }
 
   @Test
   void OpenConnectionPass() throws DataAccessException {
-      assertNotNull(conn);
+    assertNotNull(conn);
   }
 
   @Test
@@ -41,7 +41,7 @@ class DatabaseHeadTest {
 
   @Test
   void GetConnectionPass() throws DataAccessException {
-      assertNotNull(db.getConnection());
+    assertNotNull(db.getConnection());
   }
 
   @Test

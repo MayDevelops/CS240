@@ -170,8 +170,7 @@ public class DatabaseHead {
       stmt = conn.prepareStatement(sqlAuthToken);
       stmt.executeUpdate();
       stmt.close();
-    }
-    catch (SQLException e){
+    } catch (SQLException e) {
       throw new DataAccessException(e.toString());
     }
   }

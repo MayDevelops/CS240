@@ -22,10 +22,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class PersonsDAOTest {
   private DatabaseHead db = new DatabaseHead();
   ClearService clearService = new ClearService();
+
   Connection conn;
   private Person bestPerson;
   private PersonsDAO personDAO;
   private UsersDAO userDAO;
+
 
   @BeforeEach
   public void SetUp() throws DataAccessException {

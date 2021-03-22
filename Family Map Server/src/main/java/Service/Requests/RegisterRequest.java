@@ -24,7 +24,7 @@ public class RegisterRequest {
   }
 
   public RegisterRequest(String setUsername, String setPassword, String setEmail, String setFirstName, String setLastName,
-              String setGender) {
+                         String setGender) {
     this.username = setUsername;
     this.password = setPassword;
     this.email = setEmail;

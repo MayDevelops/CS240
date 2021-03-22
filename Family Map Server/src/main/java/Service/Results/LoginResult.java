@@ -11,7 +11,10 @@ public class LoginResult {
   private String message;
   private boolean success;
 
-  public LoginResult(String setMessage, boolean setSuccess) { this.setMessage(setMessage); this.setSuccess(setSuccess); }
+  public LoginResult(String setMessage, boolean setSuccess) {
+    this.setMessage(setMessage);
+    this.setSuccess(setSuccess);
+  }
 
   public LoginResult(String setAuthToken, String setUsername, String setPersonID) {
     this.setAuthtoken(setAuthToken);

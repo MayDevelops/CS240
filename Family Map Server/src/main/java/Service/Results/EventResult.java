@@ -22,20 +22,27 @@ public class EventResult {
   private String message;
   private boolean success;
 
-  public EventResult(String setMessage, boolean setSuccess) { this.setMessage(setMessage); this.setSuccess(setSuccess); }
-  public EventResult(ArrayList<Event> setEvents) { this.setData(setEvents); this.setSuccess(true);}
+  public EventResult(String setMessage, boolean setSuccess) {
+    this.setMessage(setMessage);
+    this.setSuccess(setSuccess);
+  }
+
+  public EventResult(ArrayList<Event> setEvents) {
+    this.setData(setEvents);
+    this.setSuccess(true);
+  }
 
   public EventResult(Event event, String username) {
-      this.setEventID(event.getEventID());
-      this.setAssociatedUsername(username);
-      this.setPersonID(event.getPersonID());
-      this.setCountry(event.getCountry());
-      this.setCity(event.getCity());
-      this.setEventType(event.getEventType());
-      this.setLatitude(event.getLatitude());
-      this.setLongitude(event.getLongitude());
-      this.setYear(event.getYear());
-      this.setSuccess(true);
+    this.setEventID(event.getEventID());
+    this.setAssociatedUsername(username);
+    this.setPersonID(event.getPersonID());
+    this.setCountry(event.getCountry());
+    this.setCity(event.getCity());
+    this.setEventType(event.getEventType());
+    this.setLatitude(event.getLatitude());
+    this.setLongitude(event.getLongitude());
+    this.setYear(event.getYear());
+    this.setSuccess(true);
   }
 
   public ArrayList<Event> getData() { return data; }

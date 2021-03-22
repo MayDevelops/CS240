@@ -77,7 +77,7 @@ public class GenerateEvent {
     Event death = generatedLocation.GenerateLocation();
     int avgLifespan = 30;
     int yearDeath = year + avgLifespan + r.nextInt(50);
-    if((yearDeath - year) > 120) {
+    if ((yearDeath - year) > 120) {
       yearDeath = year + 120;
     }
 
@@ -89,8 +89,7 @@ public class GenerateEvent {
     events.add(death);
   }
 
-  public void Random(Person person, int year)
-  {
+  public void Random(Person person, int year) {
     int yearsBeforeBirth = 10;
     int eventYear = year + yearsBeforeBirth + r.nextInt(20);
 
@@ -122,7 +121,6 @@ public class GenerateEvent {
   public GenerateEvent(String setUsername) { username = setUsername; }
 
   public ArrayList<Event> GetEvents() { return events; }
-
 
 
 }

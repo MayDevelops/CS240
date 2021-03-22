@@ -3,7 +3,6 @@ package Models;
 /**
  * The user class is a model class that represents a user account using the username, password, email,
  * first name, last name, gender and unique person id.
- *
  */
 public class User {
 
@@ -30,13 +29,14 @@ public class User {
 
   /**
    * Accepts the incoming user information and creates a pojo.
-   * @param setUsername the user's username.
-   * @param setPassword the user's password.
-   * @param setEmail the user's email.
+   *
+   * @param setUsername  the user's username.
+   * @param setPassword  the user's password.
+   * @param setEmail     the user's email.
    * @param setFirstName the user's first name.
-   * @param setLastName the user's last name.
-   * @param setGender the user's gender.
-   * @param setPersonID Unique Person ID assigned to this user’s generated Person object.
+   * @param setLastName  the user's last name.
+   * @param setGender    the user's gender.
+   * @param setPersonID  Unique Person ID assigned to this user’s generated Person object.
    */
   public User(String setUsername, String setPassword, String setEmail, String setFirstName, String setLastName,
               String setGender, String setPersonID) {

@@ -12,9 +12,12 @@ public class PersonsDAO {
   private final Connection conn;
 
   public PersonsDAO(Connection conn) {this.conn = conn; }
+
   public PersonsDAO() { this.conn = null; }
+
   /**
    * Inserts the person into the Person table in the database.
+   *
    * @param person the person to be inserted into the database.
    */
   public void Insert(Person person) throws DataAccessException {
@@ -41,7 +44,7 @@ public class PersonsDAO {
     String sql = "DELETE FROM Persons WHERE Username = ?;";
 
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-      stmt.setString(1,username);
+      stmt.setString(1, username);
       stmt.executeUpdate();
 
     } catch (SQLException e) {
@@ -53,12 +56,13 @@ public class PersonsDAO {
 
   /**
    * Clears the Person table in the database.
+   *
    * @return true or false depending on if the table is cleared correctly.
    */
   public boolean Clear() throws DataAccessException {
     boolean success = false;
     String sql = "DROP TABLE IF EXISTS Persons;";
-    try(PreparedStatement stmt = conn.prepareStatement(sql)) {
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
       stmt.executeUpdate();
       success = true;
     } catch (SQLException e) {
@@ -68,7 +72,6 @@ public class PersonsDAO {
     }
     return success;
   }
-
 
   public Person Find(String person_ID) throws DataAccessException {
     Person person;
@@ -88,7 +91,7 @@ public class PersonsDAO {
       e.printStackTrace();
       throw new DataAccessException("Error encountered while finding event");
     } finally {
-      if(rs != null) {
+      if (rs != null) {
         try {
           rs.close();
         } catch (SQLException e) {
@@ -118,7 +121,7 @@ public class PersonsDAO {
       e.printStackTrace();
       throw new DataAccessException("Error encountered while finding all persons associated with " + username + ".");
     } finally {
-      if(rs != null) {
+      if (rs != null) {
         try {
           rs.close();
         } catch (SQLException e) {
@@ -127,7 +130,7 @@ public class PersonsDAO {
       }
     }
 
-    if(persons.size() == 0) {
+    if (persons.size() == 0) {
       return null;
     } else {
       return persons;

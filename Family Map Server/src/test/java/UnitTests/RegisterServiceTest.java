@@ -20,6 +20,7 @@ public class RegisterServiceTest {
   DatabaseHead db = new DatabaseHead();
   ClearService clearService = new ClearService();
 
+
   @BeforeEach
   public void setUp() throws DataAccessException {
     clearService.ClearDatabase();

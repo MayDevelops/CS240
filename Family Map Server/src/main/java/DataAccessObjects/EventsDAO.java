@@ -1,4 +1,5 @@
 package DataAccessObjects;
+
 import Models.*;
 
 import java.sql.Connection;
@@ -15,15 +16,16 @@ public class EventsDAO {
 
   private final Connection conn;
 
-  public EventsDAO(Connection conn)
-  {
+  public EventsDAO(Connection conn) {
     this.conn = conn;
   }
+
   public EventsDAO() { this.conn = null; }
 
 
   /**
    * Inserts the event into the Event table in the database.
+   *
    * @param event the event to be inserted into the database.
    * @return true or false depending on if the event is correctly inserted into the table.
    */
@@ -42,8 +44,8 @@ public class EventsDAO {
       stmt.setString(4, event.getCountry());
       stmt.setString(5, event.getCity());
       stmt.setString(6, event.getEventType());
-      stmt.setFloat(7,  event.getLatitude());
-      stmt.setFloat(8,  event.getLongitude());
+      stmt.setFloat(7, event.getLatitude());
+      stmt.setFloat(8, event.getLongitude());
       stmt.setInt(9, event.getYear());
 
       stmt.executeUpdate();
@@ -56,7 +58,7 @@ public class EventsDAO {
     String sql = "DELETE FROM Events WHERE AssociatedUsername = ?;";
 
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-      stmt.setString(1,associatedUsername);
+      stmt.setString(1, associatedUsername);
       stmt.executeUpdate();
 
     } catch (SQLException e) {
@@ -68,19 +70,21 @@ public class EventsDAO {
 
   /**
    * Clears the Event table in the database.
+   *
    * @return true or false depending on if the table is cleared correctly.
    */
   public Boolean Clear() {
     boolean success = false;
     String sql = "DROP TABLE IF EXISTS Events;";
-    try(PreparedStatement stmt = conn.prepareStatement(sql)) {
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
       stmt.executeUpdate();
       success = true;
     } catch (SQLException e) {
       e.printStackTrace();
       System.out.println("Error Clearing Event's Table\n");
     }
-    return success; }
+    return success;
+  }
 
 
   public Event Find(String eventID) throws DataAccessException {
@@ -102,7 +106,7 @@ public class EventsDAO {
       e.printStackTrace();
       throw new DataAccessException("Error encountered while finding event");
     } finally {
-      if(rs != null) {
+      if (rs != null) {
         try {
           rs.close();
         } catch (SQLException e) {
@@ -135,7 +139,7 @@ public class EventsDAO {
       e.printStackTrace();
       throw new DataAccessException("Error encountered while finding event");
     } finally {
-      if(rs != null) {
+      if (rs != null) {
         try {
           rs.close();
         } catch (SQLException e) {
@@ -143,7 +147,7 @@ public class EventsDAO {
         }
       }
     }
-    if(events.size() == 0) {
+    if (events.size() == 0) {
       return null;
     } else {
       return events;

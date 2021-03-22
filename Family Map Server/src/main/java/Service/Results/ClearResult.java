@@ -8,7 +8,10 @@ public class ClearResult {
   private String message;
   private boolean success;
 
-  public ClearResult(String setMessage, boolean setSuccess) { this.setMessage(setMessage); this.setSuccess(setSuccess); }
+  public ClearResult(String setMessage, boolean setSuccess) {
+    this.setMessage(setMessage);
+    this.setSuccess(setSuccess);
+  }
 
   public String getMessage() { return message; }
   public boolean getSuccess() { return success; }

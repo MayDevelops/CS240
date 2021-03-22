@@ -15,6 +15,7 @@ public class UsersDAO {
   private final Connection conn;
 
   public UsersDAO(Connection conn) {this.conn = conn; }
+
   public UsersDAO() { this.conn = null; }
 
   /**
@@ -90,14 +91,13 @@ public class UsersDAO {
       e.printStackTrace();
       throw new DataAccessException("Error encountered while finding user: " + username);
     } finally {
-      if(rs != null) {
+      if (rs != null) {
         try {
           rs.close();
         } catch (SQLException e) {
           e.printStackTrace();
         }
       }
-
     }
     return null;
   }

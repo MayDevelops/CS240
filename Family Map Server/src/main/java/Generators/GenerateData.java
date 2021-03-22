@@ -1,6 +1,7 @@
 package Generators;
 
 import Models.Person;
+
 import java.util.*;
 
 public class GenerateData {

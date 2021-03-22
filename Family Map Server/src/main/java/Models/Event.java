@@ -33,15 +33,16 @@ public class Event {
 
   /**
    * The event pojo that represents an event that takes place in a persons life.
-   * @param setEventID the unique identifier for the event.
+   *
+   * @param setEventID            the unique identifier for the event.
    * @param setAssociatedUsername the user's username that is tied to this event.
-   * @param setPersonID the user's ID that this event is tied to.
-   * @param setCountry the country where the event took place.
-   * @param setCity the city where the event took place.
-   * @param setEventType the type of event that happened (birth, baptism, christening, marriage, death, etc.).
-   * @param setLatitude the latitude of event's location.
-   * @param setLongitude the longitude of event's location.
-   * @param setYear the year the event took place.
+   * @param setPersonID           the user's ID that this event is tied to.
+   * @param setCountry            the country where the event took place.
+   * @param setCity               the city where the event took place.
+   * @param setEventType          the type of event that happened (birth, baptism, christening, marriage, death, etc.).
+   * @param setLatitude           the latitude of event's location.
+   * @param setLongitude          the longitude of event's location.
+   * @param setYear               the year the event took place.
    */
   public Event(String setEventID, String setAssociatedUsername, String setPersonID, String setCountry, String setCity, String setEventType,
                float setLatitude, float setLongitude, int setYear) {

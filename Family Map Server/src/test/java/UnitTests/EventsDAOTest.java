@@ -18,8 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EventsDAOTest {
 
   private ClearService clearService = new ClearService();
-  private Connection conn;
   private DatabaseHead db = new DatabaseHead();
+
+  private Connection conn;
   private Event bestEvent;
   private EventsDAO eventDAO;
 
@@ -62,9 +63,9 @@ public class EventsDAOTest {
   public void FindEventPass() throws DataAccessException {
     Event eOne = new Event("1", "OptimusPrime", "Can", "Russia", "Smell", "Mustache", 1, 2, 111);
 
-      eventDAO.Insert(eOne);
-      Event findEvent = eventDAO.Find("1");
-      assertEquals(findEvent, eOne);
+    eventDAO.Insert(eOne);
+    Event findEvent = eventDAO.Find("1");
+    assertEquals(findEvent, eOne);
   }
 
   @Test

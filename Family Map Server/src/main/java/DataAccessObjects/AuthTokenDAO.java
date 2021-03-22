@@ -13,11 +13,13 @@ import java.sql.SQLException;
 public class AuthTokenDAO {
 
   private Connection conn;
+
   public AuthTokenDAO(Connection conn) {this.conn = conn; }
 
 
   /**
    * Inserts the authToken into the AuthToken table in the database.
+   *
    * @param authToken the token to be inserted into the database.
    * @return true or false depending on if the token is correctly inserted into the table.
    */
@@ -49,7 +51,7 @@ public class AuthTokenDAO {
       e.printStackTrace();
       throw new DataAccessException("Error encountered while finding token");
     } finally {
-      if(rs != null) {
+      if (rs != null) {
         try {
           rs.close();
         } catch (SQLException e) {
@@ -62,5 +64,6 @@ public class AuthTokenDAO {
   }
 
   public String getUserName(User user) { return user.getUsername(); }
+
   public String getPassword(User user) { return user.getPassword(); }
 }

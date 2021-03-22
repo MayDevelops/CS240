@@ -21,6 +21,7 @@ public class EventServiceTest {
   ClearService clearService = new ClearService();
   EventService eventService = new EventService();
   DatabaseHead db = new DatabaseHead();
+
   EventResult eventResult;
   AuthTokenDAO authTokenDAO;
   EventsDAO eventDAO;
@@ -46,8 +47,7 @@ public class EventServiceTest {
   }
 
   @Test
-  public void EventPass() throws SQLException, DataAccessException //Finding a single event
-  {
+  public void EventPass() throws SQLException, DataAccessException {
     Event eOne = new Event("1", "OptimusPrime", "Can", "Russia", "Smell", "Mustache", 1, 2, 111);
     Event eTwo = new Event("1-2", "OptimusPrime", "You", "Ussiar", "Stink", "HandelBar", 12, 23, 222);
     Event eThree = new Event("1-2-3", "OptimusPrime", "Feel", "Ssiaru", "Stankin", "Curler", 123, 234, 333);
@@ -86,12 +86,13 @@ public class EventServiceTest {
     eventArray.add(eThree);
     eventArray.add(eFive);
 
-    for (int i = 0; i < eventArray.size(); i++) { assertEquals(eventArray.get(i), eventResult.getData().get(i)); }
+    for (int i = 0; i < eventArray.size(); i++) {
+      assertEquals(eventArray.get(i), eventResult.getData().get(i));
+    }
   }
 
   @Test
-  public void EventFail() throws SQLException, DataAccessException //Finding an event that doesn't exist, faulty eventID
-  {
+  public void EventFail() throws SQLException, DataAccessException {
     Event eOne = new Event("1", "OptimusPrime", "Can", "Russia", "Smell", "Mustache", 1, 2, 111);
     Event eTwo = new Event("1-2", "OptimusPrime", "You", "Ussiar", "Stink", "HandelBar", 12, 23, 222);
     Event eThree = new Event("1-2-3", "OptimusPrime", "Feel", "Ssiaru", "Stankin", "Curler", 123, 234, 333);

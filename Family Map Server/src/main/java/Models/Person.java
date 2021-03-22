@@ -35,14 +35,15 @@ public class Person {
 
   /**
    * The parameterized Person constructor that creates a pojo of a person data
-   * @param setPersonID the person's unique ID
+   *
+   * @param setPersonID           the person's unique ID
    * @param setAssociatedUsername the username that the user is using
-   * @param setFirstName the person's first name
-   * @param setLastName the person's last name
-   * @param setGender the person's gender
-   * @param setFatherID the person's father's unique ID
-   * @param setMotherID the person's mother's unique ID
-   * @param setSpouseID the person's spouse's unique ID if they are married
+   * @param setFirstName          the person's first name
+   * @param setLastName           the person's last name
+   * @param setGender             the person's gender
+   * @param setFatherID           the person's father's unique ID
+   * @param setMotherID           the person's mother's unique ID
+   * @param setSpouseID           the person's spouse's unique ID if they are married
    */
   public Person(String setPersonID, String setAssociatedUsername, String setFirstName, String setLastName, String setGender,
                 String setFatherID, String setMotherID, String setSpouseID) {
@@ -63,7 +64,7 @@ public class Person {
   public String getGender() { return gender; }
   public String getFatherID() { return fatherID; }
   public String getMotherID() { return motherID; }
-  public String getSpouseID() { return spouseID; }
+  public String getSpouseID() { return spouseID;}
 
   public void setPersonID(String personID) { this.personID = personID; }
   public void setAssociatedUsername(String associatedUsername) { this.associatedUsername = associatedUsername; }

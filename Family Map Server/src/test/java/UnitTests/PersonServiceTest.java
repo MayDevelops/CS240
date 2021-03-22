@@ -22,11 +22,13 @@ public class PersonServiceTest {
   ClearService clearService = new ClearService();
   PersonService personService = new PersonService();
   DatabaseHead db = new DatabaseHead();
+
   PersonResult personResult;
   PersonsDAO personsDAO;
   AuthTokenDAO authTokenDAO;
   UsersDAO usersDAO;
   Connection conn;
+
 
   @BeforeEach
   public void setUp() throws DataAccessException, SQLException {

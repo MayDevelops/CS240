@@ -1,4 +1,5 @@
 package Service.Requests;
+
 import Models.*;
 
 /**
@@ -21,6 +22,7 @@ public class LoadRequest {
     this.persons = setPersonArray;
     this.events = setEventArray;
   }
+
   public User[] getUsers() { return users; }
   public Person[] getPersons() { return persons; }
   public Event[] getEvents() { return events; }

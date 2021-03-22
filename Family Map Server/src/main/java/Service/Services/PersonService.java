@@ -70,7 +70,7 @@ public class PersonService {
         } else {
           Person personsPerson = FindPerson(findToken);
           db.closeConnection(true);
-          return new PersonResult(persons,personsPerson);
+          return new PersonResult(persons, personsPerson);
         }
       }
     } catch (DataAccessException e) {
