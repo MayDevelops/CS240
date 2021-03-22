@@ -62,8 +62,6 @@ public class EventHandler implements HttpHandler {
       exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
       exchange.getResponseBody().close();
     }
-
-
   }
 
   private void ToString(String in, OutputStream out) throws IOException {
@@ -71,6 +69,4 @@ public class EventHandler implements HttpHandler {
     s.write(in);
     s.flush();
   }
-
-
 }

@@ -20,12 +20,7 @@ public class EventService {
   private AuthTokenDAO authTokenDAO;
   private EventsDAO eventsDAO;
 
-  /**
-   * Function that determines if an event was successful or not.
-   *
-   * @param r the authtoken passed in to get the event logic for the user.
-   * @return the result of the operation.
-   */
+
   public EventResult event(String authtoken) throws DataAccessException {
     db = new DatabaseHead();
     conn = db.getConnection();

@@ -116,5 +116,4 @@ public class RegisterService {
       eventsDAO.Insert(temp);
     }
   }
-
 }

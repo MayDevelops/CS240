@@ -8,7 +8,6 @@ import com.google.gson.JsonParser;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Locale;
 import java.util.Random;
 
 public class GenerateLocations {

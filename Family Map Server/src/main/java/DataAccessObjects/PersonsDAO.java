@@ -1,4 +1,5 @@
 package DataAccessObjects;
+
 import Models.*;
 
 import java.sql.*;
@@ -132,22 +133,9 @@ public class PersonsDAO {
     }
   }
 
-
-  public String GetPersonID(Person person) { return person.getPersonID(); }
-  public String GetFirstName(Person person) { return person.getFirstName(); }
-  public String GetLastName(Person person) { return person.getLastName(); }
-  public String GetGender(Person person) { return person.getGender(); }
-  public String GetFatherID(Person person) { return person.getFatherID(); }
-  public String GetMotherID(Person person) { return person.getMotherID(); }
-  public String GetSpouseID(Person person) { return person.getSpouseID(); }
-  public Set<String> GetAllPersons(String associatedUsername) { Set<String> toReturn = new TreeSet<>(); return toReturn; }
-
   public void setPersonID(String setPersonID, Person person) { person.setPersonID(setPersonID); }
   public void setFirstName(String setFirstName, Person person) { person.setFirstName(setFirstName); }
   public void setLastName(String setLastName, Person person) { person.setLastName(setLastName); }
   public void setGender(String setGender, Person person) { person.setGender(setGender); }
-  public void setFatherID(String setFatherID, Person person) { person.setFatherID(setFatherID); }
-  public void setMotherID(String setMotherID, Person person) { person.setMotherID(setMotherID);}
-  public void setSpouseID(String setSpouseID, Person person) { person.setSpouseID(setSpouseID); }
   public void setAssociatedUsername(String setAssociatedUsername, Person person) { person.setAssociatedUsername(setAssociatedUsername); }
 }

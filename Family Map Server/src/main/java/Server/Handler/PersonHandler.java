@@ -18,8 +18,6 @@ public class PersonHandler implements HttpHandler {
   Gson gson = new Gson();
   String response = "Error: Request denied.";
   PersonResult personResult;
-  boolean success = false;
-
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
@@ -51,7 +49,6 @@ public class PersonHandler implements HttpHandler {
             ToString(response, responseBody);
             responseBody.close();
           }
-
         }
       }
     } catch (DataAccessException e) {
@@ -61,12 +58,9 @@ public class PersonHandler implements HttpHandler {
     }
   }
 
-
   private void ToString(String in, OutputStream out) throws IOException {
     OutputStreamWriter s = new OutputStreamWriter(out);
     s.write(in);
     s.flush();
   }
-
-
 }

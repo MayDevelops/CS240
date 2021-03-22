@@ -2,7 +2,6 @@ package Server.Handler;
 
 import DataAccessObjects.DataAccessException;
 import Service.Requests.RegisterRequest;
-import Service.Results.LoginResult;
 import Service.Results.RegisterResult;
 import Service.Services.*;
 import com.google.gson.Gson;
@@ -48,7 +47,6 @@ public class RegisterHandler implements HttpHandler {
       exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
       exchange.getResponseBody().close();
     }
-
   }
 
   private void ToString(String sentResponse, OutputStream out) throws IOException {

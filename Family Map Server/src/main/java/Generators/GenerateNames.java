@@ -31,7 +31,6 @@ public class GenerateNames {
 
   public String FemaleName() {
 
-
     try {
       Random r = new Random();
       JsonParser jp = new JsonParser();
@@ -52,7 +51,6 @@ public class GenerateNames {
 
   public String SurName() {
 
-
     try {
       Random r = new Random();
       JsonParser jp = new JsonParser();
@@ -70,6 +68,4 @@ public class GenerateNames {
 
     return "There was an error generating a surname.\n";
   }
-
-
 }

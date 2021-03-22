@@ -1,7 +1,7 @@
 package DataAccessObjects;
+
 import Models.*;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -104,7 +104,7 @@ public class UsersDAO {
 
     } catch (SQLException e) {
       e.printStackTrace();
-      throw new DataAccessException("Error encountered while finding event");
+      throw new DataAccessException("Error encountered while finding user: " + username);
     } finally {
       if(rs != null) {
         try {
@@ -117,14 +117,4 @@ public class UsersDAO {
     }
     return null;
   }
-
-  public String GetUsername(User user) { return user.getUsername(); }
-  public String GetUserPassword(User user) { return user.getPassword(); }
-
-  public void SetUserName(String setUsername, User user) { user.setUsername(setUsername); }
-  public void SetPassword(String setPassword, User user) { user.setPassword(setPassword); }
-  public void SetEmail(String setEmail, User user) { user.setEmail(setEmail); }
-  public void SetFirstName(String setFirstName, User user) { user.setFirstName(setFirstName); }
-  public void SetLastName(String setLastName, User user) { user.setLastName(setLastName);}
-  public void SetGender(String setGender, User user) { user.setGender(setGender); }
 }

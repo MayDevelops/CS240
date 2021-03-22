@@ -7,10 +7,9 @@ import Models.Event;
 import Models.Person;
 import Models.User;
 import Service.Results.*;
-import Service.Requests.*;
 
-import javax.annotation.processing.Generated;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -47,10 +46,10 @@ public class FillService {
       } else {
         Person temp = UserToPerson(usersDAO.find(username));
         GenerationStorage generationStorage = generateData.PopulateGenerations(temp, numGen);
-        Insert(generationStorage.getPersonsArray(), generationStorage.getEventsArray());
+        Insert(generationStorage.getPersonsArray(), generationStorage.getEventsArray());;
         db.closeConnection(true);
         return new FillResult("Successfully added " + generationStorage.getPersonsArray().size() +
-                " Persons and " + generationStorage.getEventsArray().size() + " Events.", true);
+                " persons and " + generationStorage.getEventsArray().size() + " events.", true);
       }
     } catch (DataAccessException e) {
       e.printStackTrace();
@@ -61,19 +60,23 @@ public class FillService {
   }
 
   private boolean ClearUsersInfo(String username) {
-
     boolean success = false;
 
     if (eventsDAO.Delete(username) && personsDAO.Delete(username)) {
+      try {
+        conn.commit();
+      } catch (SQLException throwables) {
+        throwables.printStackTrace();
+      }
       success = true;
     }
-
     return success;
   }
 
   private Person UserToPerson(User user) {
     Person p = new Person();
 
+    p.setPersonID(user.getPersonID());
     p.setAssociatedUsername(user.getUsername());
     p.setFirstName(user.getFirstName());
     p.setLastName(user.getLastName());

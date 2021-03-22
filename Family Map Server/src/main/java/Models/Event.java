@@ -19,7 +19,6 @@ public class Event {
   private float longitude;
   private int year;
 
-
   public Event() {
     eventID = UUID.randomUUID().toString();
     associatedUsername = null;
@@ -64,7 +63,6 @@ public class Event {
     this.setLatitude(setLatitude);
     this.setLongitude(setLongitude);
   }
-
 
   public String getEventID() { return eventID; }
   public String getAssociatedUsername() { return associatedUsername; }

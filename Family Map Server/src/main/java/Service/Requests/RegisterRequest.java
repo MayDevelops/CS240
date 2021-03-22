@@ -34,7 +34,6 @@ public class RegisterRequest {
     this.personID = null;
   }
 
-
   public String getUsername() { return username; }
   public String getPassword() { return password; }
   public String getEmail() { return email; }
@@ -50,5 +49,4 @@ public class RegisterRequest {
   public void setLastName(String setLastName) { this.lastName = setLastName; }
   public void setGender(String setGender) { this.gender = setGender; }
   public void setPersonID(String setPersonID) { this.personID = setPersonID; }
-
 }

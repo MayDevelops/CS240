@@ -22,11 +22,11 @@ public class LoginService {
   private Connection conn;
 
   private DatabaseHead db = new DatabaseHead();
-  private AuthToken authToken = new AuthToken();
   private User user = new User();
 
   public LoginResult login(LoginRequest r) throws DataAccessException, SQLException {
     conn = db.getConnection();
+    AuthToken authtoken = new AuthToken();
     authTokenDAO = new AuthTokenDAO(conn);
     usersDAO = new UsersDAO(conn);
 
@@ -44,10 +44,10 @@ public class LoginService {
       db.closeConnection(false);
       return new LoginResult("Error: Password is incorrect.", false);
     } else {
-      authToken.setUsername(r.getUsername());
-      authTokenDAO.Insert(authToken);
+      authtoken.setUsername(r.getUsername());
+      authTokenDAO.Insert(authtoken);
       db.closeConnection(true);
-      return new LoginResult(authToken.getAuthtoken(), user.getUsername(), user.getPersonID());
+      return new LoginResult(authtoken.getAuthtoken(), user.getUsername(), user.getPersonID());
     }
   }
 

@@ -22,7 +22,6 @@ public class LoginHandler implements HttpHandler {
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
-    boolean success = false;
 
     try {
 

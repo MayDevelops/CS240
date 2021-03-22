@@ -8,7 +8,7 @@ public class FillResult {
   private String message;
   private boolean success;
 
-  public FillResult(String setMessage, boolean setSuccess) { this.setMessage(setMessage); this.setSuccess(success); }
+  public FillResult(String setMessage, boolean setSuccess) { this.setMessage(setMessage); this.setSuccess(setSuccess); }
 
   public String getMessage() { return message; }
   public boolean getSuccess() { return success; }

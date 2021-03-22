@@ -2,14 +2,10 @@ package UnitTests;
 
 import DataAccessObjects.DataAccessException;
 import DataAccessObjects.DatabaseHead;
-import DataAccessObjects.UsersDAO;
-import Models.Event;
-import Models.User;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javax.xml.crypto.Data;
 
 import java.sql.Connection;
 
@@ -21,7 +17,7 @@ class DatabaseHeadTest {
   Connection conn;
 
   @BeforeEach
-  void setUp() throws DataAccessException {
+  void setUp() {
     db = new DatabaseHead();
   }
 
@@ -34,7 +30,6 @@ class DatabaseHeadTest {
     } catch (DataAccessException e) {
 
     }
-
   }
 
   @Test
@@ -45,7 +40,6 @@ class DatabaseHeadTest {
     } catch (DataAccessException e) {
 
     }
-
   }
 
   @Test
@@ -60,7 +54,6 @@ class DatabaseHeadTest {
     } catch (DataAccessException e) {
 
     }
-
   }
 
   @Test
@@ -76,5 +69,4 @@ class DatabaseHeadTest {
     }
     assertTrue(passed);
   }
-
 }

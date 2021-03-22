@@ -66,9 +66,9 @@ public class LoadService {
       db.closeConnection(true);
 
       String successString = "Successfully added " +
-              r.getUsers().length + " Users, " +
-              r.getPersons().length + " Persons, and " +
-              r.getEvents().length + " Events.";
+              r.getUsers().length + " users, " +
+              r.getPersons().length + " persons, and " +
+              r.getEvents().length + " events.";
 
       return new LoadResult(successString, true);
 
@@ -174,9 +174,5 @@ public class LoadService {
         throw new DataAccessException("Error: Potential duplicate events in database.");
       }
     }
-
-
   }
-
-
 }

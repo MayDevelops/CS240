@@ -2,13 +2,16 @@ package UnitTests;
 
 import DataAccessObjects.DataAccessException;
 import DataAccessObjects.DatabaseHead;
+
 import Service.Requests.RegisterRequest;
 import Service.Results.RegisterResult;
 import Service.Services.ClearService;
 import Service.Services.RegisterService;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.sql.Connection;
 
 import static org.junit.jupiter.api.Assertions.*;

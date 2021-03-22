@@ -3,6 +3,7 @@ package Server.Handler;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -22,10 +23,12 @@ public class DefaultHandler implements HttpHandler {
    */
   @Override
   public void handle(HttpExchange exchange) throws IOException {
-
+    OutputStream response;
+    Path filePath;
+    String path;
+    String uri;
     try {
-      String path;
-      String uri = exchange.getRequestURI().toString();
+      uri = exchange.getRequestURI().toString();
 
       if (uri.equals("/")) {
         path = "web/index.html";
@@ -33,15 +36,27 @@ public class DefaultHandler implements HttpHandler {
         path = "web/" + uri;
       }
 
+      File file = new File(path);
+      if (file.exists()) {
+        System.out.println(file);
+      } else {
+        exchange.sendResponseHeaders(HttpURLConnection.HTTP_NOT_FOUND, 0);
+        response = exchange.getResponseBody();
+        File badPath = new File("web/HTML/404.html");
+        Files.copy(badPath.toPath(), response);
+        response.close();
+      }
+
       exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-      OutputStream response = exchange.getResponseBody();
-      Path filePath = FileSystems.getDefault().getPath(path);
+      response = exchange.getResponseBody();
+      filePath = FileSystems.getDefault().getPath(path);
       Files.copy(filePath, response);
       response.close();
 
     } catch (IOException e) {
-      exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
-      exchange.getResponseBody().close();
+      exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+      response = exchange.getResponseBody();
+      response.close();
       e.printStackTrace();
     }
   }

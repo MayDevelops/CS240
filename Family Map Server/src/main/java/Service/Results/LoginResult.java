@@ -31,5 +31,4 @@ public class LoginResult {
   public void setPersonID(String setPersonID) { this.personID = setPersonID; }
   public void setMessage(String setMessage) { this.message = setMessage; }
   private void setSuccess(boolean setSuccess) { this.success = setSuccess; }
-
 }

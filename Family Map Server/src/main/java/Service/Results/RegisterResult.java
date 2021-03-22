@@ -13,8 +13,6 @@ public class RegisterResult {
   public RegisterResult() {}
   public RegisterResult(String setError, boolean success) { this.setMessage(setError); this.setSuccess(success); }
 
-
-
   /**
    * The constructor for the register result that will either create a success or failure message.
    * @param setAuthToken the authtoken to be assigned to the user if successful.

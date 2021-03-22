@@ -1,18 +1,22 @@
 package UnitTests;
 
 import Models.AuthToken;
+import Models.User;
+
+import Service.Requests.RegisterRequest;
 import Service.Results.FillResult;
 import Service.Results.PersonResult;
+import Service.Results.RegisterResult;
 import Service.Services.ClearService;
-import DataAccessObjects.*;
-import Models.User;
 import Service.Services.FillService;
 import Service.Services.PersonService;
-import org.junit.jupiter.api.AfterEach;
+import Service.Services.RegisterService;
 
+import DataAccessObjects.*;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FillServiceTest {
   DatabaseHead db = new DatabaseHead();
   ClearService clearService = new ClearService();
+  RegisterRequest registerRequest;
   Connection conn;
 
 
@@ -32,14 +37,12 @@ public class FillServiceTest {
     conn = db.getConnection();
 
     AuthTokenDAO authTokenDAO = new AuthTokenDAO(conn);
-    UsersDAO usersDAO = new UsersDAO(conn);
 
-    User tempUser = new User("OptimusPrime", "autobots", "stars@yahoo",
-            "Optimus", "Prime", "R", "OppyPoppy");
+    registerRequest = new RegisterRequest("OptimusPrime", "autobots", "stars@yahoo.com",
+            "Optimus", "Prime", "R");
 
     authTokenDAO.Insert(new AuthToken("OptimusPrime", "1111"));
     authTokenDAO.Insert(new AuthToken("Megatron", "2222"));
-    usersDAO.Insert(tempUser);
 
     conn.commit();
   }
@@ -54,6 +57,9 @@ public class FillServiceTest {
   public void FillPass() throws DataAccessException {
     PersonService personService = new PersonService();
     PersonResult personResult = personService.Person("1111");
+
+    RegisterService registerService = new RegisterService();
+    RegisterResult registerResult = registerService.Register(registerRequest);
 
     assertNull(personResult.getData());
     assertEquals("Error: OptimusPrime has no associated Persons.", personResult.getMessage());

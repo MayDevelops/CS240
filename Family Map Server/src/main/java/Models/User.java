@@ -1,6 +1,4 @@
 package Models;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * The user class is a model class that represents a user account using the username, password, email,

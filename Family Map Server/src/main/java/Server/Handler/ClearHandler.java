@@ -15,18 +15,14 @@ public class ClearHandler implements HttpHandler {
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
-    boolean success = false;
 
     try {
-      System.out.println("Clear Handler has been called.\n");
       if (exchange.getRequestMethod().equalsIgnoreCase("post")) {
-        System.out.println("Calling clearService...\n");
         ClearService clearService = new ClearService();
-        System.out.println("clearService is finished, creating result...\n");
         ClearResult clearResult = clearService.ClearDatabase();
 
         String response = "{ \"message\": \"" + clearResult.getMessage() + "\"}";
-        System.out.println("Response created: \"" + response + "\" \n");
+        System.out.println("\"" + response + "\" \n");
 
         if (clearResult.getSuccess()) {
           exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
@@ -52,5 +48,4 @@ public class ClearHandler implements HttpHandler {
     s.write(in);
     s.flush();
   }
-
 }

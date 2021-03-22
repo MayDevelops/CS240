@@ -1,13 +1,15 @@
 package UnitTests;
 
 import DataAccessObjects.DataAccessException;
+
 import Models.*;
+
 import Service.Requests.LoadRequest;
 import Service.Results.LoadResult;
 import Service.Services.ClearService;
 import Service.Services.LoadService;
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoadServiceTest {
@@ -37,7 +39,7 @@ public class LoadServiceTest {
     LoadService loadService = new LoadService();
     LoadResult loadResult = loadService.Load(loadRequest);
 
-    assertEquals("Successfully added 2 Users, 4 Persons, and 4 Events.", loadResult.getMessage());
+    assertEquals("Successfully added 2 users, 4 persons, and 4 events.", loadResult.getMessage());
 
     clearService.ClearDatabase();
   }

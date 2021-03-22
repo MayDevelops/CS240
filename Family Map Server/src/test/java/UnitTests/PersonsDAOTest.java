@@ -3,16 +3,17 @@ package UnitTests;
 import DataAccessObjects.DataAccessException;
 import DataAccessObjects.DatabaseHead;
 import DataAccessObjects.PersonsDAO;
+
 import Models.Person;
-import org.junit.Assert;
+
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class PersonsDAOTest {
   private DatabaseHead db;
   private Person bestPerson;
@@ -79,11 +80,6 @@ class PersonsDAOTest {
       System.out.println("Error encountered while finding Person\n");
     }
   }
-
-//  @Test
-//  void Delete() throws DataAccessException {
-//
-//  }
 
   @Test
   void ClearPass() {

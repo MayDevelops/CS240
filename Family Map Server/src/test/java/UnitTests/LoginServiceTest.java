@@ -3,11 +3,14 @@ package UnitTests;
 import DataAccessObjects.DataAccessException;
 import DataAccessObjects.DatabaseHead;
 import DataAccessObjects.UsersDAO;
+
 import Models.User;
+
 import Service.Requests.LoginRequest;
 import Service.Results.LoginResult;
 import Service.Services.ClearService;
 import Service.Services.LoginService;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +28,6 @@ public class LoginServiceTest {
   Connection conn;
   UsersDAO UsersDAO;
   LoginResult loginResult;
-
 
   @BeforeEach
   public void setUp() throws SQLException, DataAccessException {

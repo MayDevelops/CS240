@@ -52,11 +52,11 @@ public class EventsDAO {
     }
   }
 
-  public Boolean Delete(String username) {
+  public Boolean Delete(String associatedUsername) {
     String sql = "DELETE FROM Events WHERE AssociatedUsername = ?;";
 
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-      stmt.setString(1,username);
+      stmt.setString(1,associatedUsername);
       stmt.executeUpdate();
 
     } catch (SQLException e) {

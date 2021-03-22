@@ -5,10 +5,8 @@ import Models.AuthToken;
 import Models.Person;
 import Models.User;
 import Service.Results.*;
-import Service.Requests.*;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -57,6 +55,7 @@ public class PersonService {
     conn = db.getConnection();
     authTokenDAO = new AuthTokenDAO(conn);
     personsDAO = new PersonsDAO(conn);
+
     try {
       AuthToken findToken = authTokenDAO.find(authToken);
 
@@ -65,15 +64,11 @@ public class PersonService {
         return new PersonResult("Error: AuthToken returned null.", false);
       } else {
         ArrayList<Person> persons = personsDAO.FindAll(findToken.getUsername());
-        //vvv new
-
-        Person personsPerson = FindPerson(findToken);
-
-        //^^^ new
         if (persons == null) {
           db.closeConnection(false);
           return new PersonResult("Error: " + findToken.getUsername() + " has no associated Persons.", false);
         } else {
+          Person personsPerson = FindPerson(findToken);
           db.closeConnection(true);
           return new PersonResult(persons,personsPerson);
         }
@@ -90,6 +85,4 @@ public class PersonService {
     User temp = uDAO.find(t.getUsername());
     return personsDAO.find(temp.getPersonID());
   }
-
-
 }

@@ -34,7 +34,6 @@ public class PersonResult {
       this.setSuccess(true);
   }
 
-
   public PersonResult(ArrayList<Person> data, Person p) {
     this.setPersonID(p.getPersonID());
     this.setAssociatedUsername(p.getAssociatedUsername());
@@ -56,7 +55,6 @@ public class PersonResult {
   public String getLastName() { return lastName; }
   public String getGender() { return gender; }
   public String getFatherID() { return fatherID; }
-  public String getMotherID() { return motherID; }
   public String getSpouseID() { return spouseID; }
   public String getMessage() { return message; }
   public boolean getSuccess() { return success; }
@@ -72,5 +70,4 @@ public class PersonResult {
   public void setSpouseID(String setSpouseID) { this.spouseID = setSpouseID; }
   public void setMessage(String setMessage) { this.message = setMessage; }
   public void setSuccess(boolean setSuccess) { this.success = setSuccess; }
-
 }

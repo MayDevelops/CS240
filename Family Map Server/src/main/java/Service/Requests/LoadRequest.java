@@ -16,8 +16,7 @@ public class LoadRequest {
     this.events = null;
   }
 
-  public LoadRequest(User[] setUserArray, Person[] setPersonArray, Event[] setEventArray)
-  {
+  public LoadRequest(User[] setUserArray, Person[] setPersonArray, Event[] setEventArray) {
     this.users = setUserArray;
     this.persons = setPersonArray;
     this.events = setEventArray;

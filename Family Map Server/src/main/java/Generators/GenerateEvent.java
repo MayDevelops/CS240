@@ -35,27 +35,37 @@ public class GenerateEvent {
     return null;
   }
 
-  public void Marriage(Person h, Person w, int year) {
+  public void Marriage(Person husband, Person wife, int year) {
     int yearMarried = year + r.nextInt(6) + 22;
 
     Event husbandMarriage = generatedLocation.GenerateLocation();
-    husbandMarriage.setPersonID(h.getPersonID());
+    husbandMarriage.setPersonID(husband.getPersonID());
     husbandMarriage.setAssociatedUsername(username);
     husbandMarriage.setEventType("Marriage");
     husbandMarriage.setYear(yearMarried);
 
-    Event wifeMarriage = JoinMarriage(husbandMarriage, w, yearMarried);
+    Event wifeMarriage = JoinMarriage(husbandMarriage, wife, yearMarried);
 
     events.add(husbandMarriage);
     events.add(wifeMarriage);
   }
 
-  public void Birth(Person p, int year) {
+  public void RootBirth(Person rootPerson, int year) {
+    Event birth = generatedLocation.GenerateLocation();
+
+    birth.setPersonID(rootPerson.getPersonID());
+    birth.setEventType("Birth");
+    birth.setYear(year);
+    birth.setAssociatedUsername(username);
+
+    events.add(birth);
+  }
+
+  public void Birth(Person person, int year) {
     Event birth = generatedLocation.GenerateLocation();
     int yearBorn = year - r.nextInt(10);
 
-
-    birth.setPersonID(p.getPersonID());
+    birth.setPersonID(person.getPersonID());
     birth.setEventType("Birth");
     birth.setYear(yearBorn);
     birth.setAssociatedUsername(username);
@@ -63,16 +73,15 @@ public class GenerateEvent {
     events.add(birth);
   }
 
-  public void Death(Person p, int year) {
+  public void Death(Person person, int year) {
     Event death = generatedLocation.GenerateLocation();
     int avgLifespan = 30;
     int yearDeath = year + avgLifespan + r.nextInt(50);
-
-    if(yearDeath > 2021) {
-      yearDeath = 2021;
+    if((yearDeath - year) > 120) {
+      yearDeath = year + 120;
     }
 
-    death.setPersonID(p.getPersonID());
+    death.setPersonID(person.getPersonID());
     death.setEventType("Death");
     death.setYear(yearDeath);
     death.setAssociatedUsername(username);
@@ -80,13 +89,13 @@ public class GenerateEvent {
     events.add(death);
   }
 
-  public void Random(Person p, int year)
+  public void Random(Person person, int year)
   {
     int yearsBeforeBirth = 10;
-    int eventYear = year + yearsBeforeBirth + r.nextInt(15);
+    int eventYear = year + yearsBeforeBirth + r.nextInt(20);
 
     Event random = generatedLocation.GenerateLocation();
-    random.setPersonID(p.getPersonID());
+    random.setPersonID(person.getPersonID());
     random.setEventType(EventType());
     random.setYear(eventYear);
     random.setAssociatedUsername(username);
@@ -94,10 +103,10 @@ public class GenerateEvent {
     events.add(random);
   }
 
-  private Event JoinMarriage(Event husbandMarriage, Person w, int yearMarried) {
+  private Event JoinMarriage(Event husbandMarriage, Person wife, int yearMarried) {
     Event wifeMarriage = new Event();
 
-    wifeMarriage.setPersonID(w.getPersonID());
+    wifeMarriage.setPersonID(wife.getPersonID());
     wifeMarriage.setAssociatedUsername(username);
     wifeMarriage.setEventType("Marriage");
     wifeMarriage.setYear(yearMarried);

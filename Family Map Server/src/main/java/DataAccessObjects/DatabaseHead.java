@@ -1,6 +1,5 @@
 package DataAccessObjects;
 
-import javax.xml.crypto.Data;
 import java.sql.*;
 
 /**
@@ -92,7 +91,6 @@ public class DatabaseHead {
       String sqlEvents = "DROP TABLE IF EXISTS Events; \n";
       String sqlAuthToken = "DROP TABLE IF EXISTS AuthToken; \n";
 
-      System.out.println("Attempting to drop tables...\n");
       stmt = conn.prepareStatement(sqlUsers);
       stmt.executeUpdate();
       stmt = conn.prepareStatement(sqlPersons);
@@ -101,7 +99,6 @@ public class DatabaseHead {
       stmt.executeUpdate();
       stmt = conn.prepareStatement(sqlAuthToken);
       stmt.executeUpdate();
-      System.out.println("Tables dropped successfully!\n");
       try {
         CreateTables();
       } catch (DataAccessException e) {
@@ -109,7 +106,6 @@ public class DatabaseHead {
       }
 
     } catch (SQLException e) {
-      System.out.println("Tables failed to drop successfully.\n");
       System.out.println(e.toString());
       throw new DataAccessException(e.toString());
     }
@@ -165,7 +161,6 @@ public class DatabaseHead {
               "\tPRIMARY KEY(`Auth_Token`)\n" +
               ");\n";
 
-      System.out.println("Attempting to create new tables...\n");
       stmt = conn.prepareStatement(sqlUsers);
       stmt.executeUpdate();
       stmt = conn.prepareStatement(sqlPersons);
@@ -175,10 +170,8 @@ public class DatabaseHead {
       stmt = conn.prepareStatement(sqlAuthToken);
       stmt.executeUpdate();
       stmt.close();
-      System.out.println("New tables created successfully!\n");
     }
     catch (SQLException e){
-      System.out.println("Failed to create new tables successfully.\n");
       throw new DataAccessException(e.toString());
     }
   }
