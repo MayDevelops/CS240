@@ -35,7 +35,7 @@ public class LoginService {
       return new LoginResult("Error: Input is invalid.", false);
     }
 
-    user = usersDAO.find(r.getUsername());
+    user = usersDAO.Find(r.getUsername());
 
     if (user == null) {
       db.closeConnection(false);

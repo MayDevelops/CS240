@@ -70,10 +70,20 @@ public class EventsDAO {
    * Clears the Event table in the database.
    * @return true or false depending on if the table is cleared correctly.
    */
-  public Boolean Clear(Event event) { return null; }
+  public Boolean Clear() {
+    boolean success = false;
+    String sql = "DROP TABLE IF EXISTS Events;";
+    try(PreparedStatement stmt = conn.prepareStatement(sql)) {
+      stmt.executeUpdate();
+      success = true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.out.println("Error Clearing Event's Table\n");
+    }
+    return success; }
 
 
-  public Event find(String eventID) throws DataAccessException {
+  public Event Find(String eventID) throws DataAccessException {
     Event event;
     ResultSet rs = null;
     String sql = "SELECT * FROM Events WHERE EventID = ?;";
@@ -104,7 +114,7 @@ public class EventsDAO {
     return null;
   }
 
-  public ArrayList<Event> findAll(String username) throws DataAccessException {
+  public ArrayList<Event> FindAll(String username) throws DataAccessException {
     ArrayList<Event> events = new ArrayList<Event>();
     Event event;
     ResultSet rs = null;

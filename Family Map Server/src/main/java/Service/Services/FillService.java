@@ -36,7 +36,7 @@ public class FillService {
     }
 
     try {
-      if (usersDAO.find(username) == null) {
+      if (usersDAO.Find(username) == null) {
         db.closeConnection(false);
         return new FillResult("Error: User does not exist.", false);
       } else if (! ClearUsersInfo(username)) {
@@ -44,7 +44,7 @@ public class FillService {
         return new FillResult("Error: Failed to delete " + username + " Events and Persons" +
                 " information from the database.", false);
       } else {
-        Person temp = UserToPerson(usersDAO.find(username));
+        Person temp = UserToPerson(usersDAO.Find(username));
         GenerationStorage generationStorage = generateData.PopulateGenerations(temp, numGen);
         Insert(generationStorage.getPersonsArray(), generationStorage.getEventsArray());;
         db.closeConnection(true);

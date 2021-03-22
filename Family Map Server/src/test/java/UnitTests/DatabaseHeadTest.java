@@ -13,47 +13,35 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DatabaseHeadTest {
 
-  DatabaseHead db;
+  DatabaseHead db = new DatabaseHead();
   Connection conn;
 
   @BeforeEach
-  void setUp() {
-    db = new DatabaseHead();
+  void setUp() throws DataAccessException {
+    conn = db.getConnection();
   }
 
   @AfterEach
-  void tearDown() {
-    try {
+  void tearDown() throws DataAccessException {
       if(db.conn != null) {
         db.closeConnection(false);
       }
-    } catch (DataAccessException e) {
-
-    }
   }
 
   @Test
-  void OpenConnectionPass() {
-    try {
-      conn = db.getConnection();
+  void OpenConnectionPass() throws DataAccessException {
       assertNotNull(conn);
-    } catch (DataAccessException e) {
-
-    }
   }
 
   @Test
-  void OpenConnectionFail() {
+  void OpenConnectionFail() throws DataAccessException {
+    db.closeConnection(false);
     assertNull(db.conn);
   }
 
   @Test
-  void GetConnectionPass() {
-    try {
+  void GetConnectionPass() throws DataAccessException {
       assertNotNull(db.getConnection());
-    } catch (DataAccessException e) {
-
-    }
   }
 
   @Test

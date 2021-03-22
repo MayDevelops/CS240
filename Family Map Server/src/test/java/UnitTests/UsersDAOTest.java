@@ -47,7 +47,7 @@ class UsersDAOTest {
   void InsertPass() throws DataAccessException {
     uDao.Insert(bestUser);
 
-    User compareTest = uDao.find(bestUser.getUsername());
+    User compareTest = uDao.Find(bestUser.getUsername());
 
     assertNotNull(compareTest);
 
@@ -65,11 +65,11 @@ class UsersDAOTest {
   @Test
   void FindPass() {
     try {
-      assertNull(uDao.find("OptimusPrime123"));
+      assertNull(uDao.Find("OptimusPrime123"));
       uDao.Insert(bestUser);
-      assertNotNull(uDao.find("OptimusPrime123"));
+      assertNotNull(uDao.Find("OptimusPrime123"));
 
-      User testUser = uDao.find("OptimusPrime123");
+      User testUser = uDao.Find("OptimusPrime123");
       assertEquals(bestUser, testUser);
     } catch (DataAccessException e) {
       System.out.println("Error encountered while finding User\n");
@@ -79,11 +79,11 @@ class UsersDAOTest {
   @Test
   void FindFail() {
     try {
-      assertNull(uDao.find("OptimusPrime123"));
+      assertNull(uDao.Find("OptimusPrime123"));
       uDao.Insert(bestUser);
-      assertNotNull(uDao.find("OptimusPrime123"));
+      assertNotNull(uDao.Find("OptimusPrime123"));
 
-      assertNull(uDao.find("Doesn'tExist"));
+      assertNull(uDao.Find("Doesn'tExist"));
     } catch (DataAccessException e) {
       System.out.println("Error encountered while finding User\n");
     }
@@ -92,9 +92,9 @@ class UsersDAOTest {
   @Test
   void Clear() {
     try {
-      assertNull(uDao.find("OptimusPrime123"));
+      assertNull(uDao.Find("OptimusPrime123"));
       uDao.Insert(bestUser);
-      assertNotNull(uDao.find("OptimusPrime123"));
+      assertNotNull(uDao.Find("OptimusPrime123"));
 
       assertTrue(uDao.Clear());
     } catch (DataAccessException e) {

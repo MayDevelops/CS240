@@ -53,7 +53,7 @@ public class RegisterService {
     CreateUser(r);
 
     try {
-      if (usersDAO.find(user.getUsername()) == null) {
+      if (usersDAO.Find(user.getUsername()) == null) {
         usersDAO.Insert(user);
         authToken = new AuthToken(user.getUsername());
         authTokenDAO.Insert(authToken);

@@ -27,7 +27,7 @@ public class PersonService {
 
     try {
       AuthToken findToken = authTokenDAO.find(authToken);
-      Person findPerson = personsDAO.find(personID);
+      Person findPerson = personsDAO.Find(personID);
 
       if (findToken == null) {
         db.closeConnection(false);
@@ -82,7 +82,7 @@ public class PersonService {
 
   private Person FindPerson(AuthToken t) throws DataAccessException {
     UsersDAO uDAO = new UsersDAO(conn);
-    User temp = uDAO.find(t.getUsername());
-    return personsDAO.find(temp.getPersonID());
+    User temp = uDAO.Find(t.getUsername());
+    return personsDAO.Find(temp.getPersonID());
   }
 }

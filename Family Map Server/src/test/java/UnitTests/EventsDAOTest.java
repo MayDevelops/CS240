@@ -3,74 +3,160 @@ package UnitTests;
 import DataAccessObjects.*;
 import Models.*;
 
+import Service.Services.ClearService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class EventsDAOTest {
 
-  private DatabaseHead db;
+  private ClearService clearService = new ClearService();
+  private Connection conn;
+  private DatabaseHead db = new DatabaseHead();
   private Event bestEvent;
-  private EventsDAO eDao;
+  private EventsDAO eventDAO;
 
   @BeforeEach
-  public void setUp() throws DataAccessException
-  {
-    //here we can set up any classes or variables we will need for the rest of our tests
-    //lets create a new database
-    db = new DatabaseHead();
-    //and a new event with random data
+  public void SetUp() throws DataAccessException {
+    clearService.ClearDatabase();
+
     bestEvent = new Event("Biking_123A", "Gale", "Gale123A", "Japan", "Ushiku",
             "Biking_Around", 35.9f, 140.1f, 2016);
 
-
-    //Here, we'll open the connection in preparation for the test case to use it
-    Connection conn = db.getConnection();
-    //Let's clear the database as well so any lingering data doesn't affect our tests
-    db.ClearTables();
-    //Then we pass that connection to the EventDAO so it can access the database
-    eDao = new EventsDAO(conn);
+    conn = db.getConnection();
+    eventDAO = new EventsDAO(conn);
   }
 
   @AfterEach
-  public void tearDown() throws DataAccessException {
-    //Here we close the connection to the database file so it can be opened elsewhere.
-    //We will leave commit to false because we have no need to save the changes to the database
-    //between test cases
-      db.closeConnection(false);
+  public void TearDown() throws DataAccessException {
+    db.closeConnection(false);
+    clearService.ClearDatabase();
+
   }
 
   @Test
   public void InsertPass() throws DataAccessException {
-    //While insert returns a bool we can't use that to verify that our function actually worked
-    //only that it ran without causing an error
-    eDao.Insert(bestEvent);
-    //So lets use a find method to get the event that we just put in back out
-    Event compareTest = eDao.find(bestEvent.getEventID());
-    //First lets see if our find found anything at all. If it did then we know that if nothing
-    //else something was put into our database, since we cleared it in the beginning
-    assertNotNull(compareTest);
-    //Now lets make sure that what we put in is exactly the same as what we got out. If this
-    //passes then we know that our insert did put something in, and that it didn't change the
-    //data in any way
-    assertEquals(bestEvent, compareTest);
+    eventDAO.Insert(bestEvent);
+
+    Event findEvent = eventDAO.Find(bestEvent.getEventID());
+
+    assertNotNull(findEvent);
+
+    assertEquals(bestEvent, findEvent);
   }
 
   @Test
   public void InsertFail() throws DataAccessException {
-    //lets do this test again but this time lets try to make it fail
-    //if we call the method the first time it will insert it successfully
-    eDao.Insert(bestEvent);
-    //but our sql table is set up so that "eventID" must be unique. So trying to insert it
-    //again will cause the method to throw an exception
-    //Note: This call uses a lambda function. What a lambda function is is beyond the scope
-    //of this class. All you need to know is that this line of code runs the code that
-    //comes after the "()->" and expects it to throw an instance of the class in the first parameter.
-    assertThrows(DataAccessException.class, ()-> eDao.Insert(bestEvent));
+    eventDAO.Insert(bestEvent);
+    assertThrows(DataAccessException.class, () -> eventDAO.Insert(bestEvent));
   }
 
+  @Test
+  public void FindEventPass() throws DataAccessException {
+    Event eOne = new Event("1", "OptimusPrime", "Can", "Russia", "Smell", "Mustache", 1, 2, 111);
+
+      eventDAO.Insert(eOne);
+      Event findEvent = eventDAO.Find("1");
+      assertEquals(findEvent, eOne);
+  }
+
+  @Test
+  public void FindEventFail() throws DataAccessException, SQLException {
+
+    Event eOne = new Event("1", "OptimusPrime", "Can", "Russia", "Smell", "Mustache", 1, 2, 111);
+    eventDAO.Insert(eOne);
+    conn.commit();
+    assertNull(eventDAO.Find("1-2"));
+  }
+
+  @Test
+  public void FindAllEventsPass() throws DataAccessException, SQLException {
+    ArrayList<Event> events = new ArrayList<Event>();
+    ArrayList<Event> findEvents;
+
+    Event eOne = new Event("1", "OptimusPrime", "Can", "Russia", "Smell", "Mustache", 1, 2, 111);
+    Event eTwo = new Event("1-2", "OptimusPrime", "You", "Ussiar", "Stink", "HandelBar", 12, 23, 222);
+    Event eThree = new Event("1-2-3", "OptimusPrime", "Feel", "Ssiaru", "Stankin", "Curler", 123, 234, 333);
+    Event eFive = new Event("1-2-3-4-5", "OptimusPrime", "Love", "Iaruss", "VStank", "Laughed", 12345, 23456, 555);
+    eventDAO.Insert(eOne);
+    eventDAO.Insert(eTwo);
+    eventDAO.Insert(eThree);
+    eventDAO.Insert(eFive);
+    conn.commit();
+
+
+    events.add(eOne);
+    events.add(eTwo);
+    events.add(eThree);
+    events.add(eFive);
+
+    try {
+      clearService.ClearDatabase();
+      eventDAO.Insert(eOne);
+      eventDAO.Insert(eTwo);
+      eventDAO.Insert(eThree);
+      eventDAO.Insert(eFive);
+
+      findEvents = eventDAO.FindAll("OptimusPrime");
+
+      for (int i = 0; i < events.size(); i++) {
+        assertEquals(events.get(i), findEvents.get(i));
+      }
+    } catch (DataAccessException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Test
+  public void FindAllEventsFail() throws DataAccessException, SQLException {
+    ArrayList<Event> events = new ArrayList<Event>();
+    ArrayList<Event> findEvents;
+
+    Event eOne = new Event("1", "OptimusPrime", "Can", "Russia", "Smell", "Mustache", 1, 2, 111);
+    Event eTwo = new Event("1-2", "OptimusPrime", "You", "Ussiar", "Stink", "HandelBar", 12, 23, 222);
+    Event eThree = new Event("1-2-3", "OptimusPrime", "Feel", "Ssiaru", "Stankin", "Curler", 123, 234, 333);
+    Event eFour = new Event("1-2-3-4", "Megatron", "The", "Siarus", "PooStink", "HairDryer", 1234, 2345, 444);
+    Event eFive = new Event("1-2-3-4-5", "OptimusPrime", "Love", "Iaruss", "VStank", "Laughed", 12345, 23456, 555);
+    eventDAO.Insert(eOne);
+    eventDAO.Insert(eTwo);
+    eventDAO.Insert(eThree);
+    eventDAO.Insert(eFour);
+    eventDAO.Insert(eFive);
+    conn.commit();
+
+
+    events.add(eOne);
+    events.add(eTwo);
+    events.add(eThree);
+    events.add(eFour);
+    events.add(eFive);
+
+    try {
+      clearService.ClearDatabase();
+      eventDAO.Insert(eOne);
+      eventDAO.Insert(eTwo);
+      eventDAO.Insert(eThree);
+      eventDAO.Insert(eFour);
+      eventDAO.Insert(eFive);
+
+      findEvents = eventDAO.FindAll("OptimusPrime");
+
+      for (int i = 0; i < 4; i++) {
+        if (events.get(i) == eFour) {
+          assertNotEquals(events.get(i), findEvents.get(i));
+        } else {
+          assertEquals(events.get(i), findEvents.get(i));
+        }
+      }
+    } catch (DataAccessException e) {
+      e.printStackTrace();
+    }
+  }
 }

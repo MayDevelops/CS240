@@ -63,13 +63,14 @@ public class PersonsDAO {
       success = true;
     } catch (SQLException e) {
       e.printStackTrace();
+      success = false;
       System.out.println("Error Clearing User's Table\n");
     }
     return success;
   }
 
 
-  public Person find(String person_ID) throws DataAccessException {
+  public Person Find(String person_ID) throws DataAccessException {
     Person person;
     ResultSet rs = null;
     String sql = "SELECT * FROM Persons WHERE Person_ID = ?;";

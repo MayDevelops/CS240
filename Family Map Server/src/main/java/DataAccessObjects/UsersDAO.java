@@ -41,22 +41,6 @@ public class UsersDAO {
   }
 
   /**
-   * Deletes a user from the User table in the database.
-   *
-   * @param username the user to be deleted.
-   */
-  public void Delete(String username) throws DataAccessException{
-    String sql = "DELETE FROM Users WHERE Username = ?;";
-    try(PreparedStatement stmt = conn.prepareStatement(sql)) {
-    stmt.setString(1, username);
-    stmt.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
-      throw new DataAccessException("Error encountered while deleting into the database");
-    }
-  }
-
-  /**
    * Clears the entire User table.
    *
    * @return true or false depending on if the table is cleared correctly.
@@ -88,7 +72,7 @@ public class UsersDAO {
     return success;
   }
 
-  public User find(String username) throws DataAccessException {
+  public User Find(String username) throws DataAccessException {
     User user;
     ResultSet rs = null;
     String sql = "SELECT * FROM Users WHERE Username = ?;";

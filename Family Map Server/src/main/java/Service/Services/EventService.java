@@ -33,7 +33,7 @@ public class EventService {
         db.closeConnection(false);
         return new EventResult("Error: Invalid authtoken returned null.", false);
       } else {
-        ArrayList<Event> events = eventsDAO.findAll(findToken.getUsername());
+        ArrayList<Event> events = eventsDAO.FindAll(findToken.getUsername());
         if (events == null) {
           db.closeConnection(false);
           return new EventResult("Error: Person is not associated with " + findToken.getUsername() + ".", false);
@@ -61,7 +61,7 @@ public class EventService {
         db.closeConnection(false);
         return new EventResult("Error: Invalid authtoken returned null.", false);
       } else {
-        Event findEvent = eventsDAO.find(eventID);
+        Event findEvent = eventsDAO.Find(eventID);
         if (findEvent == null) {
           db.closeConnection(false);
           return new EventResult("Error: Event does not exist.", false);

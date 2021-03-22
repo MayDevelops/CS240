@@ -11,7 +11,6 @@ import Service.Requests.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
 /**
  * Class that will handle Load business logic and determine if a request was successful.
  */
@@ -134,7 +133,7 @@ public class LoadService {
     }
 
     for (User temp : users) {
-      if (usersDAO.find(temp.getUsername()) == null) {
+      if (usersDAO.Find(temp.getUsername()) == null) {
         usersDAO.Insert(temp);
         authTokenDAO.Insert(new AuthToken(temp.getUsername()));
       } else {
@@ -150,9 +149,9 @@ public class LoadService {
 
     for (Person temp : persons) {
 
-      if (usersDAO.find(temp.getAssociatedUsername()) == null) {
+      if (usersDAO.Find(temp.getAssociatedUsername()) == null) {
         throw new DataAccessException("Error: User does not exist.");
-      } else if (personsDAO.find(temp.getPersonID()) == null) {
+      } else if (personsDAO.Find(temp.getPersonID()) == null) {
         personsDAO.Insert(temp);
       } else {
         throw new DataAccessException("Error: Potential duplicate persons in database.");
@@ -166,9 +165,9 @@ public class LoadService {
     }
 
     for (Event temp : events) {
-      if (usersDAO.find(temp.getAssociatedUsername()) == null) {
+      if (usersDAO.Find(temp.getAssociatedUsername()) == null) {
         throw new DataAccessException("Error: User does not exist.");
-      } else if (eventsDAO.find(temp.getEventID()) == null) {
+      } else if (eventsDAO.Find(temp.getEventID()) == null) {
         eventsDAO.Insert(temp);
       } else {
         throw new DataAccessException("Error: Potential duplicate events in database.");
