@@ -6,8 +6,8 @@ import DataAccessObjects.DatabaseHead;
 import DataAccessObjects.UsersDAO;
 import Models.AuthToken;
 import Models.User;
-import Service.Results.*;
-import Service.Requests.*;
+import Results.*;
+import Requests.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;

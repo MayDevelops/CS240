@@ -1,8 +1,8 @@
 package Server.Handler;
 
 import DataAccessObjects.DataAccessException;
-import Service.Requests.LoadRequest;
-import Service.Results.LoadResult;
+import Requests.LoadRequest;
+import Results.LoadResult;
 import Service.Services.LoadService;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;

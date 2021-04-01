@@ -6,8 +6,8 @@ import DataAccessObjects.UsersDAO;
 
 import Models.User;
 
-import Service.Requests.LoginRequest;
-import Service.Results.LoginResult;
+import Requests.LoginRequest;
+import Results.LoginResult;
 import Service.Services.ClearService;
 import Service.Services.LoginService;
 

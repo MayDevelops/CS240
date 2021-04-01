@@ -1,7 +1,7 @@
 package Server.Handler;
 
 import DataAccessObjects.DataAccessException;
-import Service.Results.EventResult;
+import Results.EventResult;
 import Service.Services.EventService;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;

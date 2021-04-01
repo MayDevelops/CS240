@@ -1,4 +1,4 @@
-package Service.Requests;
+package Requests;
 
 import Models.*;
 

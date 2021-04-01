@@ -2,7 +2,7 @@ package UnitTests;
 
 import DataAccessObjects.*;
 import Models.*;
-import Service.Results.EventResult;
+import Results.EventResult;
 import Service.Services.ClearService;
 import Service.Services.EventService;
 import org.junit.jupiter.api.AfterEach;

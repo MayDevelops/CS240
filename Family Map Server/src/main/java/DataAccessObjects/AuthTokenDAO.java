@@ -35,7 +35,7 @@ public class AuthTokenDAO {
     }
   }
 
-  public AuthToken find(String searchToken) throws DataAccessException {
+  public AuthToken Find(String searchToken) throws DataAccessException {
     AuthToken token;
     ResultSet rs = null;
     String sql = "SELECT * FROM AuthToken WHERE Auth_Token = ?;";

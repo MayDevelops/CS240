@@ -1,8 +1,8 @@
 package Server.Handler;
 
 import DataAccessObjects.DataAccessException;
-import Service.Requests.LoginRequest;
-import Service.Results.LoginResult;
+import Requests.LoginRequest;
+import Results.LoginResult;
 import Service.Services.LoginService;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;

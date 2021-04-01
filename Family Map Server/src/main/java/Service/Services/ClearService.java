@@ -2,7 +2,7 @@ package Service.Services;
 
 import DataAccessObjects.DataAccessException;
 import DataAccessObjects.DatabaseHead;
-import Service.Results.*;
+import Results.*;
 
 /**
  * Class that will handle Clear business logic and determine if a request was successful.

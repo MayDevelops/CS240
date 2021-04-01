@@ -4,8 +4,8 @@ import DataAccessObjects.DataAccessException;
 
 import Models.*;
 
-import Service.Requests.LoadRequest;
-import Service.Results.LoadResult;
+import Requests.LoadRequest;
+import Results.LoadResult;
 import Service.Services.ClearService;
 import Service.Services.LoadService;
 

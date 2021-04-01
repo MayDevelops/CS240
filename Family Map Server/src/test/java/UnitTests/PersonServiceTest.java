@@ -1,7 +1,7 @@
 package UnitTests;
 
 import DataAccessObjects.*;
-import Service.Results.PersonResult;
+import Results.PersonResult;
 import Service.Services.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

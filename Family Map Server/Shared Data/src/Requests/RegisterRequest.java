@@ -1,4 +1,4 @@
-package Service.Requests;
+package Requests;
 
 /**
  * A class that packages a gson request and turns it into a Java object.

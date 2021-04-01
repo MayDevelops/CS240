@@ -1,7 +1,7 @@
 package UnitTests;
 
 import DataAccessObjects.DataAccessException;
-import Service.Results.ClearResult;
+import Results.ClearResult;
 import Service.Services.ClearService;
 import org.junit.jupiter.api.Test;
 

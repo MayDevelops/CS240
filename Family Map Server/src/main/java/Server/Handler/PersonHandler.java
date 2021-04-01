@@ -1,7 +1,7 @@
 package Server.Handler;
 
 import DataAccessObjects.DataAccessException;
-import Service.Results.PersonResult;
+import Results.PersonResult;
 import Service.Services.PersonService;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;

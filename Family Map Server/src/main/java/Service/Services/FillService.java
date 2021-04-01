@@ -6,7 +6,7 @@ import Generators.GenerationStorage;
 import Models.Event;
 import Models.Person;
 import Models.User;
-import Service.Results.*;
+import Results.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;

@@ -4,7 +4,7 @@ import DataAccessObjects.*;
 import Models.AuthToken;
 import Models.Person;
 import Models.User;
-import Service.Results.*;
+import Results.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class PersonService {
     personsDAO = new PersonsDAO(conn);
 
     try {
-      AuthToken findToken = authTokenDAO.find(authToken);
+      AuthToken findToken = authTokenDAO.Find(authToken);
       Person findPerson = personsDAO.Find(personID);
 
       if (findToken == null) {
@@ -57,7 +57,7 @@ public class PersonService {
     personsDAO = new PersonsDAO(conn);
 
     try {
-      AuthToken findToken = authTokenDAO.find(authToken);
+      AuthToken findToken = authTokenDAO.Find(authToken);
 
       if (findToken == null) {
         db.closeConnection(false);

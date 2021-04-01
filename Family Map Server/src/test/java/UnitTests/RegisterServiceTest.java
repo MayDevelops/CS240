@@ -3,8 +3,8 @@ package UnitTests;
 import DataAccessObjects.DataAccessException;
 import DataAccessObjects.DatabaseHead;
 
-import Service.Requests.RegisterRequest;
-import Service.Results.RegisterResult;
+import Requests.RegisterRequest;
+import Results.RegisterResult;
 import Service.Services.ClearService;
 import Service.Services.RegisterService;
 
@@ -81,4 +81,32 @@ public class RegisterServiceTest {
 
     clearService.ClearDatabase();
   }
+
+  @Test
+  public void DoubleRegisterPass() throws DataAccessException {
+    RegisterService registerService = new RegisterService();
+    RegisterRequest registerRequest1 = new RegisterRequest("User1", "Pass1", "e1", "User1First",
+            "User1Last", "M");
+    RegisterRequest registerRequest2 = new RegisterRequest("User2", "Pass2", "e2", "User2First",
+            "User2Last", "M");
+
+    RegisterResult registerResult1 = registerService.Register(registerRequest1);
+    RegisterResult registerResult2 = registerService.Register(registerRequest2);
+
+    assertNotNull(registerResult1.getPersonID());
+    assertNotNull(registerResult1.getAuthtoken());
+    assertNotNull(registerResult1.getUsername());
+    assertNull(registerResult1.getMessage());
+
+
+    assertNotNull(registerResult2.getPersonID());
+    assertNotNull(registerResult2.getAuthtoken());
+    assertNotNull(registerResult2.getUsername());
+    assertNull(registerResult2.getMessage());
+
+
+    clearService.ClearDatabase();
+  }
+
+
 }

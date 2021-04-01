@@ -7,8 +7,8 @@ import Models.AuthToken;
 import Models.Event;
 import Models.Person;
 import Models.User;
-import Service.Results.*;
-import Service.Requests.*;
+import Results.*;
+import Requests.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -25,8 +25,8 @@ public class RegisterService {
 
   private AuthToken authToken = new AuthToken();
   private Event event = new Event();
-  private Person person = new Person();
-  private User user = new User();
+  private Person person;
+  private User user;
 
   private GenerateData generateData = new GenerateData();
 
@@ -86,6 +86,7 @@ public class RegisterService {
   }
 
   private void CreateUser(RegisterRequest r) {
+    user = new User();
     user.setUsername(r.getUsername());
     user.setPassword(r.getPassword());
     user.setEmail(r.getEmail());
@@ -96,6 +97,7 @@ public class RegisterService {
   }
 
   private void CreatePerson(RegisterRequest r) {
+    person = new Person();
     person.setAssociatedUsername(r.getUsername());
     person.setFirstName(r.getFirstName());
     person.setLastName(r.getLastName());

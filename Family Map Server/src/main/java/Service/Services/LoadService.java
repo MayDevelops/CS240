@@ -5,8 +5,8 @@ import Models.AuthToken;
 import Models.Event;
 import Models.Person;
 import Models.User;
-import Service.Results.*;
-import Service.Requests.*;
+import Results.*;
+import Requests.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;

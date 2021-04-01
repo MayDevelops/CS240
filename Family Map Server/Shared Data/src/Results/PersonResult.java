@@ -1,4 +1,4 @@
-package Service.Results;
+package Results;
 
 import Models.*;
 

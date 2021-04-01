@@ -1,32 +1,23 @@
-package Service.Results;
+package Results;
 
 /**
  * A class that returns a response based on the success of the operation provided by the service.
  */
-public class RegisterResult {
+public class LoginResult {
 
   private String authtoken;
   private String username;
   private String personID;
   private String message;
-  boolean success;
+  private boolean success;
 
-  public RegisterResult() {}
-
-  public RegisterResult(String setError, boolean success) {
-    this.setMessage(setError);
-    this.setSuccess(success);
+  public LoginResult(String setMessage, boolean setSuccess) {
+    this.setMessage(setMessage);
+    this.setSuccess(setSuccess);
   }
 
-  /**
-   * The constructor for the register result that will either create a success or failure message.
-   *
-   * @param setAuthToken the authtoken to be assigned to the user if successful.
-   * @param setUsername  the username associated with the user.
-   * @param setPersonID  the unique personID associated with the user.
-   */
-  public RegisterResult(String setAuthToken, String setUsername, String setPersonID) {
-    this.setAuthToken(setAuthToken);
+  public LoginResult(String setAuthToken, String setUsername, String setPersonID) {
+    this.setAuthtoken(setAuthToken);
     this.setUsername(setUsername);
     this.setPersonID(setPersonID);
     this.setSuccess(true);
@@ -38,7 +29,7 @@ public class RegisterResult {
   public String getMessage() { return message; }
   public boolean getSuccess() { return success; }
 
-  public void setAuthToken(String setAuthToken) { this.authtoken = setAuthToken; }
+  public void setAuthtoken(String setAuthToken) { this.authtoken = setAuthToken; }
   public void setUsername(String setUsername) { this.username = setUsername; }
   public void setPersonID(String setPersonID) { this.personID = setPersonID; }
   public void setMessage(String setMessage) { this.message = setMessage; }

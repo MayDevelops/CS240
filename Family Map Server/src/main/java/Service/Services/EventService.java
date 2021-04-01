@@ -5,7 +5,7 @@ import DataAccessObjects.DataAccessException;
 import DataAccessObjects.DatabaseHead;
 import DataAccessObjects.EventsDAO;
 import Models.Event;
-import Service.Results.*;
+import Results.*;
 import Models.AuthToken;
 
 import java.sql.Connection;
@@ -28,7 +28,7 @@ public class EventService {
     eventsDAO = new EventsDAO(conn);
 
     try {
-      AuthToken findToken = authTokenDAO.find(authtoken);
+      AuthToken findToken = authTokenDAO.Find(authtoken);
       if (findToken == null) {
         db.closeConnection(false);
         return new EventResult("Error: Invalid authtoken returned null.", false);
@@ -56,7 +56,7 @@ public class EventService {
     eventsDAO = new EventsDAO(conn);
 
     try {
-      AuthToken findToken = authTokenDAO.find(authtoken);
+      AuthToken findToken = authTokenDAO.Find(authtoken);
       if (findToken == null) {
         db.closeConnection(false);
         return new EventResult("Error: Invalid authtoken returned null.", false);

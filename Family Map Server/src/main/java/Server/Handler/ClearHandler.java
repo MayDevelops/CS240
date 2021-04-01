@@ -1,7 +1,7 @@
 package Server.Handler;
 
 import DataAccessObjects.DataAccessException;
-import Service.Results.ClearResult;
+import Results.ClearResult;
 import Service.Services.ClearService;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;

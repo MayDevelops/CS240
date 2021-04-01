@@ -3,10 +3,10 @@ package UnitTests;
 import Models.AuthToken;
 import Models.User;
 
-import Service.Requests.RegisterRequest;
-import Service.Results.FillResult;
-import Service.Results.PersonResult;
-import Service.Results.RegisterResult;
+import Requests.RegisterRequest;
+import Results.FillResult;
+import Results.PersonResult;
+import Results.RegisterResult;
 import Service.Services.ClearService;
 import Service.Services.FillService;
 import Service.Services.PersonService;

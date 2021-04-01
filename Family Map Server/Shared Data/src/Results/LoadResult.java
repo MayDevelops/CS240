@@ -1,4 +1,4 @@
-package Service.Results;
+package Results;
 
 /**
  * A class that returns a response based on the success of the operation provided by the service.
