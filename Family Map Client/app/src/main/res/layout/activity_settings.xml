@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent">
+
+    <RelativeLayout
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"
+            android:orientation = "horizontal">
+
+        <!-- Life Story Lines -->
+        <TextView
+                android:id = "@+id/lifeStoryLine"
+                android:layout_width = "match_parent"
+                android:layout_height = "50dp"
+                android:layout_alignParentStart = "true"
+                android:layout_alignParentLeft = "true"
+                android:layout_alignParentTop = "true"
+                android:layout_marginTop = "15dp"
+                android:layout_marginLeft = "10dp"
+                android:layout_marginStart = "10dp"
+                android:text = "@string/life_story_lines"
+                android:textAppearance = "@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+                android:id = "@+id/lifeStoryLineDescription"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_alignLeft = "@+id/lifeStoryLine"
+                android:layout_alignStart = "@+id/lifeStoryLine"
+                android:layout_alignBottom = "@+id/lifeStoryLine"
+                android:text = "@string/life_story_lines_description" />
+
+        <Switch
+                android:id = "@+id/lifeStoryLineSwitch"
+                android:layout_width = "50dp"
+                android:layout_height = "50dp"
+                android:layout_alignParentTop = "true"
+                android:layout_alignParentEnd = "true"
+                android:layout_alignParentRight = "true"
+                android:layout_marginTop = "15dp"
+                android:layout_marginEnd = "10dp"
+                android:layout_marginRight = "10dp"
+                android:checked = "true" />
+
+        <!-- Family Tree Lines -->
+        <TextView
+                android:id = "@+id/familyTreeLine"
+                android:layout_width = "match_parent"
+                android:layout_height = "50dp"
+                android:layout_alignParentStart = "true"
+                android:layout_alignParentLeft = "true"
+                android:layout_alignParentTop = "true"
+                android:layout_marginTop = "80dp"
+                android:layout_marginLeft = "10dp"
+                android:layout_marginStart = "10dp"
+                android:text = "@string/family_tree_lines"
+                android:textAppearance = "@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+                android:id = "@+id/familyTreeLineDescription"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_alignLeft = "@+id/familyTreeLine"
+                android:layout_alignStart = "@+id/familyTreeLine"
+                android:layout_alignBottom = "@+id/familyTreeLine"
+                android:text = "@string/family_tree_description" />
+
+        <Switch
+                android:id = "@+id/familyTreeLineSwitch"
+                android:layout_width = "50dp"
+                android:layout_height = "50dp"
+                android:layout_alignParentTop = "true"
+                android:layout_alignParentEnd = "true"
+                android:layout_alignParentRight = "true"
+                android:layout_marginTop = "80dp"
+                android:layout_marginEnd = "10dp"
+                android:layout_marginRight = "10dp"
+                android:checked = "true" />
+
+
+        <!-- Spouse Lines -->
+        <TextView
+                android:id = "@+id/spouseLine"
+                android:layout_width = "match_parent"
+                android:layout_height = "50dp"
+                android:layout_alignParentStart = "true"
+                android:layout_alignParentLeft = "true"
+                android:layout_alignParentTop = "true"
+                android:layout_marginTop = "145dp"
+                android:layout_marginLeft = "10dp"
+                android:layout_marginStart = "10dp"
+                android:text = "@string/spouse_lines"
+                android:textAppearance = "@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+                android:id = "@+id/spouseLineDescription"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_alignLeft = "@+id/spouseLine"
+                android:layout_alignStart = "@+id/spouseLine"
+                android:layout_alignBottom = "@+id/spouseLine"
+                android:text = "@string/spouse_lines_description" />
+
+        <Switch
+                android:id = "@+id/spouseLineSwitch"
+                android:layout_width = "50dp"
+                android:layout_height = "50dp"
+                android:layout_alignParentTop = "true"
+                android:layout_alignParentEnd = "true"
+                android:layout_alignParentRight = "true"
+                android:layout_marginTop = "145dp"
+                android:layout_marginEnd = "10dp"
+                android:layout_marginRight = "10dp"
+                android:checked = "true" />
+
+
+        <!-- Father Filter -->
+        <TextView
+                android:id = "@+id/fatherSideFilter"
+                android:layout_width = "match_parent"
+                android:layout_height = "50dp"
+                android:layout_alignParentStart = "true"
+                android:layout_alignParentLeft = "true"
+                android:layout_alignParentTop = "true"
+                android:layout_marginTop = "210dp"
+                android:layout_marginLeft = "10dp"
+                android:layout_marginStart = "10dp"
+                android:text = "@string/father_side"
+                android:textAppearance = "@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+                android:id = "@+id/fatherSideFilterDescription"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_alignLeft = "@+id/fatherSideFilter"
+                android:layout_alignStart = "@+id/fatherSideFilter"
+                android:layout_alignBottom = "@+id/fatherSideFilter"
+                android:text = "@string/father_side_description" />
+
+        <Switch
+                android:id = "@+id/fatherSideFilterSwitch"
+                android:layout_width = "50dp"
+                android:layout_height = "50dp"
+                android:layout_alignParentTop = "true"
+                android:layout_alignParentEnd = "true"
+                android:layout_alignParentRight = "true"
+                android:layout_marginTop = "210dp"
+                android:layout_marginEnd = "10dp"
+                android:layout_marginRight = "10dp"
+                android:checked = "true" />
+
+
+        <!-- Mother Filter -->
+        <TextView
+                android:id = "@+id/motherSideFilter"
+                android:layout_width = "match_parent"
+                android:layout_height = "50dp"
+                android:layout_alignParentStart = "true"
+                android:layout_alignParentLeft = "true"
+                android:layout_alignParentTop = "true"
+                android:layout_marginTop = "275dp"
+                android:layout_marginLeft = "10dp"
+                android:layout_marginStart = "10dp"
+                android:text = "@string/mother_side"
+                android:textAppearance = "@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+                android:id = "@+id/motherSideFilterDescription"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_alignLeft = "@+id/motherSideFilter"
+                android:layout_alignStart = "@+id/motherSideFilter"
+                android:layout_alignBottom = "@+id/motherSideFilter"
+                android:text = "@string/mother_side_description" />
+
+        <Switch
+                android:id = "@+id/motherSideFilterSwitch"
+                android:layout_width = "50dp"
+                android:layout_height = "50dp"
+                android:layout_alignParentTop = "true"
+                android:layout_alignParentEnd = "true"
+                android:layout_alignParentRight = "true"
+                android:layout_marginTop = "275dp"
+                android:layout_marginEnd = "10dp"
+                android:layout_marginRight = "10dp"
+                android:checked = "true" />
+
+
+        <!-- Male Events -->
+        <TextView
+                android:id = "@+id/maleEventFilter"
+                android:layout_width = "match_parent"
+                android:layout_height = "50dp"
+                android:layout_alignParentStart = "true"
+                android:layout_alignParentLeft = "true"
+                android:layout_alignParentTop = "true"
+                android:layout_marginTop = "340dp"
+                android:layout_marginLeft = "10dp"
+                android:layout_marginStart = "10dp"
+                android:text = "@string/male_events"
+                android:textAppearance = "@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+                android:id = "@+id/maleEventFilterDescription"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_alignLeft = "@+id/maleEventFilter"
+                android:layout_alignStart = "@+id/maleEventFilter"
+                android:layout_alignBottom = "@+id/maleEventFilter"
+                android:text = "@string/male_events_description" />
+
+        <Switch
+                android:id = "@+id/maleEventFilterSwitch"
+                android:layout_width = "50dp"
+                android:layout_height = "50dp"
+                android:layout_alignParentTop = "true"
+                android:layout_alignParentEnd = "true"
+                android:layout_alignParentRight = "true"
+                android:layout_marginTop = "340dp"
+                android:layout_marginEnd = "10dp"
+                android:layout_marginRight = "10dp"
+                android:checked = "true" />
+
+
+        <!-- Female Events -->
+        <TextView
+                android:id = "@+id/femaleEventFilter"
+                android:layout_width = "match_parent"
+                android:layout_height = "50dp"
+                android:layout_alignParentStart = "true"
+                android:layout_alignParentLeft = "true"
+                android:layout_alignParentTop = "true"
+                android:layout_marginTop = "405dp"
+                android:layout_marginLeft = "10dp"
+                android:layout_marginStart = "10dp"
+                android:text = "@string/female_events"
+                android:textAppearance = "@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+                android:id = "@+id/femaleEventFilterDescription"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_alignLeft = "@+id/femaleEventFilter"
+                android:layout_alignStart = "@+id/femaleEventFilter"
+                android:layout_alignBottom = "@+id/femaleEventFilter"
+                android:text = "@string/female_events_description" />
+
+        <Switch
+                android:id = "@+id/femaleEventFilterSwitch"
+                android:layout_width = "50dp"
+                android:layout_height = "50dp"
+                android:layout_alignParentTop = "true"
+                android:layout_alignParentEnd = "true"
+                android:layout_alignParentRight = "true"
+                android:layout_marginTop = "405dp"
+                android:layout_marginEnd = "10dp"
+                android:layout_marginRight = "10dp"
+                android:checked = "true" />
+
+        <Button
+                android:layout_width = "150dp"
+                android:layout_height = "50dp"
+                android:layout_marginTop = "500dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/logout"/>
+
+    </RelativeLayout>
+</FrameLayout>
