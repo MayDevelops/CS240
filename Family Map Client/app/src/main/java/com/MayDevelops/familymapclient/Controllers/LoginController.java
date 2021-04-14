@@ -22,7 +22,7 @@ import Requests.LoginRequest;
 import Requests.RegisterRequest;
 
 
-public class LoginController extends Fragment implements LoginTask.LoginContext, RegisterTask.RegisterContext{
+public class LoginController extends Fragment implements LoginTask.LoginContext, RegisterTask.RegisterContext {
   private RegisterRequest registerRequest;
   private LoginRequest loginRequest;
 
@@ -42,8 +42,8 @@ public class LoginController extends Fragment implements LoginTask.LoginContext,
   private Button loginButton;
   private Button registerButton;
 
+  private LoginListener loginListener;
   public boolean loggedIn;
-
 
 
   @Override
@@ -80,36 +80,30 @@ public class LoginController extends Fragment implements LoginTask.LoginContext,
     email.addTextChangedListener(watcher);
 
     maleButton = view.findViewById(R.id.maleButton);
-    maleButton.setOnClickListener(new View.OnClickListener()
-    {
+    maleButton.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View v)
-      {
+      public void onClick(View v) {
         registerRequest.setGender("M");
-        Validate();
+        ValidateButtons();
       }
     });
 
     femaleButton = view.findViewById(R.id.femaleButton);
-    femaleButton.setOnClickListener(new View.OnClickListener()
-    {
+    femaleButton.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View v)
-      {
+      public void onClick(View v) {
         registerRequest.setGender("F");
-        Validate();
+        ValidateButtons();
       }
     });
 
     loginButton = view.findViewById(R.id.loginButton);
     registerButton = view.findViewById(R.id.registerButton);
-    Validate();
+    ValidateButtons();
 
-    loginButton.setOnClickListener(new View.OnClickListener()
-    {
+    loginButton.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View v)
-      {
+      public void onClick(View v) {
         loginRequest.setUsername(username.getText().toString());
         loginRequest.setPassword(password.getText().toString());
         LoginTask loginTask = new LoginTask(ipAddress.getText().toString(),
@@ -122,8 +116,7 @@ public class LoginController extends Fragment implements LoginTask.LoginContext,
 
     registerButton.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View v)
-      {
+      public void onClick(View v) {
 
         registerRequest.setUsername(username.getText().toString());
         registerRequest.setPassword(password.getText().toString());
@@ -142,7 +135,6 @@ public class LoginController extends Fragment implements LoginTask.LoginContext,
   }
 
 
-
   @Override
   public void onExecuteComplete(String message) {
     Toast toast = new Toast(getContext());
@@ -150,27 +142,27 @@ public class LoginController extends Fragment implements LoginTask.LoginContext,
     toast.setDuration(Toast.LENGTH_LONG);
     toast.show();
 
-    if(message.startsWith("W")) {
+    if (message.startsWith("W")) {
       loggedIn = true;
     }
-
+    loginListener.SwapToMap();
   }
 
-  private void Validate() {
-    if (validiateRegisterButon()) {
+  private void ValidateButtons() {
+    if (ValidiateRegisterButon()) {
       registerButton.setEnabled(false);
     } else {
       registerButton.setEnabled(true);
     }
 
-    if (validateLoginButton()) {
+    if (ValidateLoginButton()) {
       loginButton.setEnabled(false);
     } else {
       loginButton.setEnabled(true);
     }
   }
 
-  private boolean validiateRegisterButon() {
+  private boolean ValidiateRegisterButon() {
     return TextUtils.isEmpty(serverPort.getText()) ||
             TextUtils.isEmpty(ipAddress.getText()) ||
             TextUtils.isEmpty(username.getText()) ||
@@ -181,7 +173,7 @@ public class LoginController extends Fragment implements LoginTask.LoginContext,
             registerRequest.getGender() == null;
   }
 
-  private boolean validateLoginButton() {
+  private boolean ValidateLoginButton() {
     return TextUtils.isEmpty(serverPort.getText()) ||
             TextUtils.isEmpty(ipAddress.getText()) ||
             TextUtils.isEmpty(username.getText()) ||
@@ -194,10 +186,18 @@ public class LoginController extends Fragment implements LoginTask.LoginContext,
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-      Validate();
+      ValidateButtons();
     }
 
     @Override
     public void afterTextChanged(Editable s) {}
+  }
+
+  public interface LoginListener {
+    void SwapToMap();
+  }
+
+  public void SetLoginListener(LoginListener setLoginListener) {
+    loginListener = setLoginListener;
   }
 }

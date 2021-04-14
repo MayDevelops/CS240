@@ -2,11 +2,11 @@
 
 <TableLayout xmlns:android = "http://schemas.android.com/apk/res/android"
         xmlns:tools = "http://schemas.android.com/tools"
-        android:id="@+id/fragment_container"
+        android:id = "@+id/fragment_container"
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"
         android:stretchColumns = "3"
-        android:background="@color/CustomCream"
+        android:background = "@color/CustomCream"
         tools:context = ".Controllers.MainController">
 
 </TableLayout>

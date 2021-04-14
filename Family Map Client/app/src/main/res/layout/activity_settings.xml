@@ -32,7 +32,7 @@
                 android:text = "@string/life_story_lines_description" />
 
         <Switch
-                android:id = "@+id/lifeStoryLineSwitch"
+                android:id = "@+id/life_switch"
                 android:layout_width = "50dp"
                 android:layout_height = "50dp"
                 android:layout_alignParentTop = "true"
@@ -67,7 +67,7 @@
                 android:text = "@string/family_tree_description" />
 
         <Switch
-                android:id = "@+id/familyTreeLineSwitch"
+                android:id = "@+id/tree_switch"
                 android:layout_width = "50dp"
                 android:layout_height = "50dp"
                 android:layout_alignParentTop = "true"
@@ -103,7 +103,7 @@
                 android:text = "@string/spouse_lines_description" />
 
         <Switch
-                android:id = "@+id/spouseLineSwitch"
+                android:id = "@+id/spouse_switch"
                 android:layout_width = "50dp"
                 android:layout_height = "50dp"
                 android:layout_alignParentTop = "true"
@@ -259,11 +259,12 @@
                 android:checked = "true" />
 
         <Button
+                android:id = "@+id/logout_button_settings"
                 android:layout_width = "150dp"
                 android:layout_height = "50dp"
                 android:layout_marginTop = "500dp"
-                android:layout_centerHorizontal="true"
-                android:text="@string/logout"/>
+                android:layout_centerHorizontal = "true"
+                android:text = "@string/logout" />
 
     </RelativeLayout>
 </FrameLayout>

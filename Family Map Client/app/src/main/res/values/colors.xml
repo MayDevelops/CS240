@@ -7,10 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name = "blue"> #1B00FA</color>
+    <color name = "pink"> #DB00FA</color>
 
     <color name = "CustomTeal">#3ec1d3</color>
     <color name = "CustomCream">#f6f7d7</color>
     <color name = "CustomOrange">#ff9a00</color>
     <color name = "CustomPink">#ff165d</color>
+
+    <color name = "Orange">#FF5733</color>
+    <color name = "Blue">#0042FF</color>
 
 </resources>

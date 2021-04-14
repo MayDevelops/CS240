@@ -8,7 +8,7 @@ import com.MayDevelops.familymapclient.ProxyServer;
 import Requests.RegisterRequest;
 import Results.RegisterResult;
 
-public class RegisterTask extends AsyncTask<RegisterRequest, RegisterResult, RegisterResult> implements DataTask.DataContext{
+public class RegisterTask extends AsyncTask<RegisterRequest, RegisterResult, RegisterResult> implements DataTask.DataContext {
   IntermediateData intermediateData = IntermediateData.getInstance();
 
   private String serverHost;
@@ -30,8 +30,8 @@ public class RegisterTask extends AsyncTask<RegisterRequest, RegisterResult, Reg
 
   @Override
   public void onPostExecute(RegisterResult registerResult) {
-    if(registerResult.getSuccess()) {
-      DataTask dataTask = new DataTask(serverHost,ipAddress,this);
+    if (registerResult.getSuccess()) {
+      DataTask dataTask = new DataTask(serverHost, ipAddress, this);
       dataTask.execute(registerResult.getAuthtoken());
     } else {
       context.onExecuteComplete("Unable to Register new user!");

@@ -3,6 +3,7 @@ package com.MayDevelops.familymapclient.Tasks;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.MayDevelops.familymapclient.Controllers.MainController;
 import com.MayDevelops.familymapclient.Models.IntermediateData;
 import com.MayDevelops.familymapclient.ProxyServer;
 
@@ -32,19 +33,24 @@ public class DataTask extends AsyncTask<String, Boolean, Boolean> {
   @Override
   protected Boolean doInBackground(String... authtoken) {
     ProxyServer server = ProxyServer.initialize();
-    PersonResult personResult = server.Persons(serverHost,ipAddress, authtoken[0]);
-    EventResult eventResult = server.Events(serverHost,ipAddress,authtoken[0]);
+    PersonResult personResult = server.Persons(serverHost, ipAddress, authtoken[0]);
+    EventResult eventResult = server.Events(serverHost, ipAddress, authtoken[0]);
 
-    return sendDataToModel(personResult,eventResult);
+    return sendDataToModel(personResult, eventResult);
   }
 
   @Override
   protected void onPostExecute(Boolean loginOkay) {
-    if(loginOkay) {
+    if (loginOkay) {
       Person user = data.getUser();
       String successMessage = "Welcome, " + user.getFirstName() + " " + user.getLastName();
       context.onExecuteCompleteData(successMessage);
+      data.InitializeData();
+    } else {
+      context.onExecuteCompleteData("Error! Please try again.");
     }
+
+
   }
 
   public interface DataContext {
@@ -56,11 +62,11 @@ public class DataTask extends AsyncTask<String, Boolean, Boolean> {
   }
 
   private boolean InitializeEvents(EventResult eventResult) {
-    if(eventResult.getMessage() == null) {
+    if (eventResult.getMessage() == null) {
       Map<String, Event> eventMap = new HashMap<>();
       ArrayList<Event> eventArray = eventResult.getData();
 
-      for(Event event : eventArray) {
+      for (Event event : eventArray) {
         eventMap.put(event.getEventID(), event);
       }
       data.setEvents(eventMap);
@@ -70,12 +76,12 @@ public class DataTask extends AsyncTask<String, Boolean, Boolean> {
   }
 
   private boolean InitializePersons(PersonResult personResult) {
-    if(personResult.getMessage() == null) {
+    if (personResult.getMessage() == null) {
       Map<String, Person> personMap = new HashMap<>();
       ArrayList<Person> personArray = personResult.getData();
       data.setUser(personArray.get(0));
 
-      for(Person person : personArray) {
+      for (Person person : personArray) {
         personMap.put(person.getPersonID(), person);
       }
 
